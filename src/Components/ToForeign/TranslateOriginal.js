@@ -52,6 +52,7 @@ const TranslateOriginal = ({ onChange, handleTranslate, original,turn }) => {
   return (
     <>
       <TranslateBlock>
+        <>
         <ModuleRow>
           <Label>원본</Label>
           <Language>한국어 (Korean)</Language>
@@ -65,6 +66,7 @@ const TranslateOriginal = ({ onChange, handleTranslate, original,turn }) => {
           <Info>글자 수 : {original.length}/100</Info>
           <Button onClick={handleTranslate}>번역 하기</Button>
         </ModuleRow>
+        </>
       </TranslateBlock>
       <Arrow turn={turn} className="fas fa-angle-double-right" />
     </>

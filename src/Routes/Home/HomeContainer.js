@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import HomePresenter from "./HomePresenter"
 
 
-const HomeContainer = ()=>{
+const HomeContainer = ({serverStatus})=>{
     const history=useHistory()
     const [reRouting, setReRouting] = useState(false);
 
@@ -11,12 +11,12 @@ const HomeContainer = ()=>{
         setReRouting(true)
         setTimeout(()=>{
             history.push("/to-foreign")
-        },5000)
+        },2000)
     }
 
 
     return(
-        <HomePresenter handleReroute={handleReroute} reRouting={reRouting}/>
+        <HomePresenter handleReroute={handleReroute} reRouting={reRouting} serverStatus={serverStatus}/>
     )
 }
 

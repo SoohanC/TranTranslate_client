@@ -39,10 +39,10 @@ const TranslateResult = ({ result,turn }) => {
         <Label>재번역</Label>
         <Language>한국어 (Korean)</Language>
       </ModuleRow>
-      <TextArea readOnly value={result} turn={turn}/>
+      <TextArea readOnly value={result} turn={turn} placeholder="여기에 최종 번역 결과가 출력됩니다."/>
       <ModuleRow>
-        <Info>글자 수</Info>
-        <Info>유사도</Info>
+        <Info></Info>
+        <Info></Info>
       </ModuleRow>
     </TranslateBlock>
   );

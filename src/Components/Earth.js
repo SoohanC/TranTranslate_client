@@ -8,9 +8,8 @@ const Earth = () => {
   useEffect(() => {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x00a8ff);
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(41, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(500, 500);
     const geometry = new THREE.SphereGeometry(12, 12, 12);
     const wireframe = new THREE.WireframeGeometry(geometry);
     const sphere = new THREE.Mesh(geometry, wireframe);
@@ -21,7 +20,7 @@ const Earth = () => {
     scene.add(line);
     camera.position.z = 35;
     renderer.setClearColor("#000000");
-    renderer.setSize(500, 500);
+    renderer.setSize(450, 450);
 
     const renderScene = () => {
         requestAnimationFrame(renderScene);

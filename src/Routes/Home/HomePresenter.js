@@ -6,8 +6,8 @@ const RerouteAnimation = keyframes`
   0% {
     transform: translateX(100%)
   }
-  100%{
-    transform: translateX(0)
+  100% {
+    transform: translateX(0%)
   }
 `;
 
@@ -20,6 +20,29 @@ const FadeIn = keyframes`
   }
 `;
 
+const LogoFadeIn = keyframes`
+0% {
+    opacity:0;
+  }
+  50%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+`;
+
+const MessageFadeIn = keyframes`
+0% {
+    opacity:0;
+  }
+  70%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+`;
 
 const Container = styled.div`
   position: fixed;
@@ -28,10 +51,10 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: #00a8ff;
-  padding-top:40px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Jumbotron = styled.div`
@@ -42,11 +65,11 @@ const Jumbotron = styled.div`
 
 const Title = styled.div`
   color: white;
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 46px;
+  line-height: 52px;
 `;
 const Transition = styled.div`
-  display: ${(props) => (props.reRouting ? "flex" : "none")};
+  display: ${(props) => (props.reRouting ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;
@@ -55,50 +78,108 @@ const Transition = styled.div`
   background-color: white;
   animation: ${RerouteAnimation} 0.8s ease-in;
   z-index: 6;
-
 `;
 
 const Button = styled.button`
-   cursor: pointer;
-   margin: 20px 0px 0px 0px;
-   padding: 10px 20px;
-   border-radius: 5px;
-  
-   outline:none;
-   border:none;
-   font-size:16px;
-   color:white;
-     background-color:black;
-   transition:background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-   &:hover{
-     color:gray;
-     background-color:white;
-   }
+  cursor: pointer;
+  margin: 15px 0px 0px 0px;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  &:hover {
+    color: gray;
+    background-color: white;
+  }
+`;
+const Status = styled.button`
+  margin: 15px 0px 0px 0px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: white;
+  background-color: black;
 `;
 
 const Logo = styled.div`
-  margin: auto;
-  text-align:center;
+  position: fixed;
+  top: 44%;
+  width: 100%;
+  text-align: center;
   font-family: "Amatic SC", cursive;
-  color: #00a8ff;
   font-size: 80px;
+  color: white;
+  z-index: 6;
 `;
 
+const Logo2 = styled.div`
+  display: ${(props) => (props.reRouting ? "block" : "none")};
+  position: fixed;
+  top: 44%;
+  width: 100%;
+  text-align: center;
+  font-family: "Amatic SC", cursive;
+  font-size: 80px;
+  color: #00a8ff;
+  z-index: 7;
+  animation: ${LogoFadeIn} 0.8s ease-in;
+`;
+const Message = styled.div`
+  display: ${(props) => (props.reRouting ? "block" : "none")};
+  position: fixed;
+  top: 54%;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #00a8ff;
+  z-index: 7;
+  animation: ${MessageFadeIn} 1.2s ease-in;
+`;
 
-const HomePresenter = ({ reRouting, handleReroute }) => {
+const Blink = keyframes`
+50% {
+  opacity: 0;
+}`;
+const Icon = styled.i`
+  margin-right: 5px;
+  font-size: 14px;
+  color: ${(props) => (props.serverStatus ? "#00ff44" : "red")};
+  animation: ${Blink} 1.5s linear infinite;
+`;
+
+const HomePresenter = ({ reRouting, handleReroute, serverStatus }) => {
   return (
     <>
-      <Container>
+      <Container reRouting={reRouting}>
         <Jumbotron>
           <Title>
             번역기가 돌려준 번역. <br />
             과연 믿고 써도 되는 걸까?
           </Title>
-          <Button onClick={handleReroute}><i class="fas fa-globe-asia"></i> TranTranslate 시작하기</Button>
+          {!serverStatus ? (
+            <Status>
+              <Icon className="fas fa-circle" /> 현재 서버 접속 불가
+            </Status>
+          ) : (
+            <Button onClick={handleReroute}>
+              <Icon className="fas fa-globe-asia" serverStatus={serverStatus} />{" "}
+              TranTranslate 시작하기
+            </Button>
+          )}
         </Jumbotron>
-        <Earth/>
+        <Earth />
       </Container>
-      <Transition reRouting={reRouting}><Logo>TranTranslate</Logo></Transition>
+      <Logo>TranTranslate</Logo>
+      <Logo2 reRouting={reRouting}>TranTranslate</Logo2>
+      <Message reRouting={reRouting}>환영합니다.</Message>
+      <Transition reRouting={reRouting}></Transition>
     </>
   );
 };

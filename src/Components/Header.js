@@ -107,13 +107,13 @@ const Header = () => {
         </MenuBlock>
         <LinkBlock>
           <Link to="/about-us">
-            <Item>About us</Item>
+            <Item>사용법</Item>
           </Link>
           <Link to="/how-to">
-            <Item>How to use</Item>
+            <Item>문의 </Item>
           </Link>
           <Link to="/contact">
-            <Item>Contact</Item>
+            <Item>다크 모드</Item>
           </Link>
         </LinkBlock>
       </Navbar>

@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
-
 const TranslateBlock = styled.div`
   min-width: 450px;
   margin: 10px 20px;
@@ -46,31 +44,34 @@ const Button = styled.button`
   }
 `;
 const Arrow = styled.i`
- font-size:24px;
-  color:gray;
+  font-size: 24px;
+  color: gray;
 `;
 
-const TranslateOriginal = ({onChange,handleTranslate}) => {
+const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChange }) => {
   return (
-     <>
+    <>
       <TranslateBlock>
         <ModuleRow>
           <Label>원본</Label>
-          <Language>
-          <option value="en">영어 (English)</option>
+          <Language onChange={onSelectChange}>
+            <option value="en">영어 (English)</option>
             <option value="ja">일본어 (Japanese)</option>
             <option value="zh-cn">중국어 간체 (Simplified Chinese)</option>
+            <option value="zh-tw">중국어 번체 (Traditional Chinese)</option>
+            <option value="de">독일어 (German)</option>
+            <option value="es">스페인어 (Spanish)</option>
+            <option value="fr">프랑스어 (French)</option>
           </Language>
         </ModuleRow>
-        <TextArea onChange={onChange}/>
+        <TextArea value={original} onChange={onChange} placeholder="원본 언어를 선택하시고, 100자 이내로 입력해 주세요."/>
         <ModuleRow>
-          <Info>글자 수</Info>
+          <Info>글자 수 : {original.length} / 100 </Info>
           <Button onClick={handleTranslate}>번역 하기</Button>
         </ModuleRow>
       </TranslateBlock>
-      <Arrow className="fas fa-angle-double-right"/>
-     </>
-      
+      <Arrow className="fas fa-angle-double-right" />
+    </>
   );
 };
 
