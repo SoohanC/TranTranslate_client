@@ -1,4 +1,5 @@
 import Earth from "Components/Earth";
+import Noise from "Components/Noise";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -50,7 +51,7 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #00a8ff;
+  background-color:${(props) => (props.serverStatus ? " #00a8ff" : "#383838")};
   padding-top: 30px;
   display: flex;
   flex-direction: column;
@@ -110,7 +111,7 @@ const Status = styled.button`
 
 const Logo = styled.div`
   position: fixed;
-  top: 44%;
+  top: 435px;
   width: 100%;
   text-align: center;
   font-family: "Amatic SC", cursive;
@@ -122,7 +123,7 @@ const Logo = styled.div`
 const Logo2 = styled.div`
   display: ${(props) => (props.reRouting ? "block" : "none")};
   position: fixed;
-  top: 44%;
+  top: 435px;
   width: 100%;
   text-align: center;
   font-family: "Amatic SC", cursive;
@@ -157,12 +158,15 @@ const Icon = styled.i`
 const HomePresenter = ({ reRouting, handleReroute, serverStatus }) => {
   return (
     <>
-      <Container reRouting={reRouting}>
+      <Container reRouting={reRouting} serverStatus={serverStatus} >
         <Jumbotron>
-          <Title>
+          {serverStatus ? <Title>
             번역기가 돌려준 번역. <br />
             과연 믿고 써도 되는 걸까?
-          </Title>
+          </Title> : <Title>
+            죄송합니다. <br />
+            현재 점검중입니다.
+          </Title>}
           {!serverStatus ? (
             <Status>
               <Icon className="fas fa-circle" /> 현재 서버 접속 불가
@@ -174,8 +178,9 @@ const HomePresenter = ({ reRouting, handleReroute, serverStatus }) => {
             </Button>
           )}
         </Jumbotron>
-        <Earth />
+        <Earth serverStatus={serverStatus}/>
       </Container>
+      {!serverStatus && <Noise/>}
       <Logo>TranTranslate</Logo>
       <Logo2 reRouting={reRouting}>TranTranslate</Logo2>
       <Message reRouting={reRouting}>환영합니다.</Message>

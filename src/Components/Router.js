@@ -9,8 +9,8 @@ import Header from "./Header";
 import Home from "../Routes/Home";
 import ToForeign from "../Routes/ToForeign";
 import ToKorean from "../Routes/ToKorean";
-/* import AboutUs from "../Routes/AboutUs"
-import Contact from "../Routes/Contact"
+import AboutUs from "../Routes/AboutUs"
+/* import Contact from "../Routes/Contact"
 import HowTo from "../Routes/HowTo" */
 import Footer from "./Footer";
 import Construction from "./Construction";
@@ -31,8 +31,8 @@ const RouterComponent = ({ serverStatus }) => {
             <Route path="/to-korean">
               <ToKorean />
             </Route>
-            <Route path="/about-us">
-              <Construction />
+            <Route path="/about">
+              <AboutUs />
             </Route>
             <Route path="/how-to">
               <Construction />

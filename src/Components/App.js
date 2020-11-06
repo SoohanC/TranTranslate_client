@@ -4,7 +4,7 @@ import RouterComponent from "./Router";
 import Styles from "./Styles";
 
 const App = () =>{
-  const [serverStatus,setServerStatus]=useState(false);
+  const [serverStatus,setServerStatus]=useState(true);
   const [loading, setLoading]=useState(true)
 
 

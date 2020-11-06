@@ -106,8 +106,8 @@ const Header = () => {
           </Link>
         </MenuBlock>
         <LinkBlock>
-          <Link to="/about-us">
-            <Item>사용법</Item>
+          <Link to="/about">
+            <Item>서비스 소개</Item>
           </Link>
           <Link to="/how-to">
             <Item>문의 </Item>
