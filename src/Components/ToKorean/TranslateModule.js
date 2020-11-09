@@ -54,10 +54,10 @@ const TranslateModule = ({ translation, turn, destination }) => {
       case "en":
         setDest("영어 (English)");
         break;
-      case "ja":
+      case "jp":
         setDest("일본어 (Japanese)");
         break;
-      case "zh-cn":
+      case "cn":
         setDest("중국어 간체 (Simp. Chinese)");
         break;
       default:

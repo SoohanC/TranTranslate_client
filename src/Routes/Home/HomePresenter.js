@@ -135,7 +135,7 @@ const Logo2 = styled.div`
 const Message = styled.div`
   display: ${(props) => (props.reRouting ? "block" : "none")};
   position: fixed;
-  top: 54%;
+  top: 530px;
   width: 100%;
   text-align: center;
   font-size: 20px;

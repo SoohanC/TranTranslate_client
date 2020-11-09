@@ -1,6 +1,7 @@
 import { translateAPI } from "api";
 import React, { useState } from "react"
 import ToForeignPresenter from "./ToForeignPresenter"
+import completeSound from "../../sounds/finished.wav"
 
 
 const ToForeignContainer = ()=>{
@@ -10,8 +11,8 @@ const ToForeignContainer = ()=>{
     const [destLanguage,setDestLanguage] = useState("en");
     const [result,setResult] = useState("");
     const [similarity,setSimilarity] = useState([]);
-    const [multiDest1,setMultiDest1] = useState("ja");
-    const [multiDest2,setMultiDest2] = useState("zh-cn");
+    const [multiDest1,setMultiDest1] = useState("jp");
+    const [multiDest2,setMultiDest2] = useState("cn");
     const [multiTrans1,setMultiTrans1] = useState("");
     const [multiTrans2,setMultiTrans2] = useState("");
     const [multiResult1,setMultiResult1] = useState("");
@@ -33,16 +34,16 @@ const ToForeignContainer = ()=>{
         setDestLanguage(value);
         switch(value){
             case "en":
-                setMultiDest1("ja")
-                setMultiDest2("zh-cn")
+                setMultiDest1("jp")
+                setMultiDest2("cn")
                 break;
-            case "ja":
+            case "jp":
                 setMultiDest1("en")
-                setMultiDest2("zh-cn")
+                setMultiDest2("cn")
                 break;
-            case "zh-cn":
+            case "cn":
                 setMultiDest1("en")
-                setMultiDest2("ja")
+                setMultiDest2("jp")
                 break;
             default:
                 break;
@@ -68,6 +69,8 @@ const ToForeignContainer = ()=>{
                 setSimilarity([toPerString(transResult.jaccard),toPerString(transResult.leven)])
                 let cost  = totalCost + original.replaceAll("\n"," ").length + transResult.translation.length;
                 setTotalCost(cost)
+                const sound = new Audio(completeSound);
+                sound.play();
                 setTurn(1)
             } catch (error) {
                 console.log(error)
@@ -97,6 +100,8 @@ const ToForeignContainer = ()=>{
                 setMultiSimil([toPerString(transResult.jac1),toPerString(transResult.lev1),toPerString(transResult.jac2),toPerString(transResult.lev2)])
                 let cost = totalCost + translation.replaceAll("\n"," ").length*2 + transResult.trans1.length +transResult.trans2.length;
                 setTotalCost(cost)
+                const sound = new Audio(completeSound);
+                sound.play();
                 setTurn(2)
 
                 

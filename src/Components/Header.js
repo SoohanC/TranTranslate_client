@@ -119,7 +119,7 @@ const Header = () => {
       </Navbar>
       <Notification>
         <Message>
-          개발중이라 서버반응이 느릴 수 있습니다. Google 번역엔진을 사용합니다.
+          개발중이라 서버반응이 느릴 수 있습니다. 현재는 100자 이하 번역만 지원합니다. KAKAO 번역엔진을 사용합니다.
         </Message>
       </Notification>
     </HeaderBlock>

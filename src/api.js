@@ -10,7 +10,7 @@ export const serverAPI = {
 }
 
 export const translateAPI = {
-    translate: (data)=> api.post("/translate",data),
-    multiTrans: (data)=> api.post("/multiTrans",data),
-    transToKor: (data)=> api.post("/trans-to-kor",data)
+    translate: (data)=> api.post("/kakao/translate",data),
+    multiTrans: (data)=> api.post("/kakao/multi-trans",data),
+    transToKor: (data)=> api.post("/kakao/trans-to-kor",data)
 }

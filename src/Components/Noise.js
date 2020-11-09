@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import noiseSource from "images/noise.png"
 
 
+
 const noise = keyframes` 
   0% {
     transform: translateX(0px,0px); }
@@ -59,6 +60,7 @@ const NoiseMaker =styled.div`
 
 
 const Noise = ()=>{
+  
     return(
         <Container>
             <NoiseMaker/>

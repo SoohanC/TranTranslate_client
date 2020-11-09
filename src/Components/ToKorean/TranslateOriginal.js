@@ -56,9 +56,8 @@ const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChang
           <Label>원본</Label>
           <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
-            <option value="ja">일본어 (Japanese)</option>
-            <option value="zh-cn">중국어 간체 (Simplified Chinese)</option>
-            <option value="zh-tw">중국어 번체 (Traditional Chinese)</option>
+            <option value="jp">일본어 (Japanese)</option>
+            <option value="cn">중국어 간체 (Simplified Chinese)</option>
             <option value="de">독일어 (German)</option>
             <option value="es">스페인어 (Spanish)</option>
             <option value="fr">프랑스어 (French)</option>

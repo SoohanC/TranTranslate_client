@@ -87,8 +87,8 @@ const TranslateModule = ({
           <Label>번역</Label>
           <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
-            <option value="ja">일본어 (Japanese)</option>
-            <option value="zh-cn">중국어 간체 (Simplified Chinese)</option>
+            <option value="jp">일본어 (Japanese)</option>
+            <option value="cn">중국어 간체 (Simplified Chinese)</option>
           </Language>
         </ModuleRow>
         <TextArea

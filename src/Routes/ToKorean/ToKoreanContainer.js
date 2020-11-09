@@ -1,13 +1,14 @@
 import { translateAPI } from "api";
 import React, { useState } from "react";
 import ToKoreanPresenter from "./ToKoreanPresenter";
+import completeSound from "../../sounds/finished.wav"
 
 const ToKoreanContainer = () => {
   const [original, setOriginal] = useState("");
   const [langType, setLangType] = useState("en");
   const [destination1, setDestination1] = useState("");
-  const [destination2, setDestination2] = useState("ja");
-  const [destination3, setDestination3] = useState("zh-cn");
+  const [destination2, setDestination2] = useState("jp");
+  const [destination3, setDestination3] = useState("cn");
   const [translation, setTranslation] =useState([]);
   const [totalCost, setTotalCost] =useState(0)
   const [result, setResult] =useState([]);
@@ -27,28 +28,23 @@ const ToKoreanContainer = () => {
     switch (value) {
       case "en":
         setDestination1("");
-        setDestination2("ja");
-        setDestination3("zh-cn");
+        setDestination2("jp");
+        setDestination3("cn");
         break;
-      case "ja":
+      case "jp":
         setDestination1("");
         setDestination2("en");
-        setDestination3("zh-cn");
+        setDestination3("cn");
         break;
-      case "zh-cn":
+      case "cn":
         setDestination1("");
         setDestination2("en");
-        setDestination3("ja");
-        break;
-      case "zh-tw":
-        setDestination1("");
-        setDestination2("en");
-        setDestination3("ja");
+        setDestination3("jp");
         break;
       default:
         setDestination1("en");
-        setDestination2("ja");
-        setDestination3("zh-cn");
+        setDestination2("jp");
+        setDestination3("cn");
         break;
     }
   };
@@ -72,6 +68,8 @@ const ToKoreanContainer = () => {
       } catch (error) {
         console.log(error)
       }finally{
+        const sound = new Audio(completeSound);
+                sound.play();
         setLoading(false)
       }
     }
