@@ -45,6 +45,7 @@ const TranslateModule = ({ translation, turn, destination }) => {
   const [dest, setDest] = useState("");
   const [transLength, setTransLength] = useState(0);
 
+
   useEffect(() => {
     switch (destination) {
       case "":

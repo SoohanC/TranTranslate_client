@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import ReactTooltip from 'react-tooltip';
 
 const TranslateBlock = styled.div`
   position: relative;
@@ -72,6 +73,12 @@ const TranslateModule = ({
     console.log("yue")
     setTextLeng(translation.length)
   }, [translation]);
+ 
+  const copyClipboard = async(e)=>{
+    const text = e.target.value;
+    await navigator.clipboard.writeText(text)
+    console.log("copied")
+  }
 
   return (
     <>
@@ -85,11 +92,18 @@ const TranslateModule = ({
           </Language>
         </ModuleRow>
         <TextArea
+          data-tip
+          data-for='copyTooltip'
+          data-event='click'
+          onClick={copyClipboard}
           readOnly
           value={translation}
           turn={turn}
           placeholder="여기에 번역 결과가 출력됩니다."
         />
+         <ReactTooltip id="copyTooltip" place="top" type="dark" effect="float" globalEventOff='click' delayHide={800}>
+            클립보드에 복사되었습니다.
+          </ReactTooltip>
         <ModuleRow>
           <Info>글자 수 : {textLeng}</Info>
           <Button onClick={handleMultiTrans} turn={turn}>

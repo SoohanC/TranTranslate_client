@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import ReactTooltip from 'react-tooltip';
 
 const TranslateBlock = styled.div`
   min-width: 450px;
@@ -63,7 +64,14 @@ const TranslateMulti = ({ destination, translation ,turn}) => {
           <Label>다중 번역</Label>
           <Language>{dest}</Language>
         </ModuleRow>
-        <TextArea turn={turn} readOnly value={translation} placeholder="여기에 다중 번역 결과가 출력됩니다."/>
+        <TextArea 
+        data-tip
+        data-for='copyTooltip'
+        data-event='click'
+        turn={turn} readOnly value={translation} placeholder="여기에 다중 번역 결과가 출력됩니다."/>
+        <ReactTooltip id="copyTooltip" place="top" type="dark" effect="float" globalEventOff='click' delayHide={400}>
+            클립보드에 복사되었습니다.
+          </ReactTooltip>
         <ModuleRow>
           <Info>글자 수 : {textLeng}</Info>
           <Info></Info>
