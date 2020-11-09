@@ -13,13 +13,12 @@ a{
 }
 body{
     font-family: 'Noto Sans KR', sans-serif;
+
 }
 
 :root{
     --animate-delay: 0.5s;
 }
 `;
-
-
 
 export default GlobalStyles;

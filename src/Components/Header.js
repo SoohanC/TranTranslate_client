@@ -57,7 +57,7 @@ const MenuBlock = styled.div`
 const Menu = styled.span`
   color: white;
   margin: 0px 0px;
-  padding: 20px 20px;
+  padding: 19px 20px;
   border-bottom: 4px solid ${props=> props.current === "true" ? "white" : "transparent"};
   transition: border-bottom .5s linear;
 `;
@@ -109,17 +109,17 @@ const Header = () => {
           <Link to="/about">
             <Item>서비스 소개</Item>
           </Link>
-          <Link to="/how-to">
+          <Link to="/contact">
             <Item>문의 </Item>
           </Link>
-          <Link to="/contact">
+          <Link to="/wip">
             <Item>다크 모드</Item>
           </Link>
         </LinkBlock>
       </Navbar>
       <Notification>
         <Message>
-          개발중이라 서버반응이 느릴 수 있습니다. 현재는 100자 이하 번역만 지원합니다. KAKAO 번역엔진을 사용합니다.
+          현재는 100자 이하 번역만 지원합니다. KAKAO 번역엔진을 사용합니다.
         </Message>
       </Notification>
     </HeaderBlock>

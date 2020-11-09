@@ -10,8 +10,8 @@ import Home from "../Routes/Home";
 import ToForeign from "../Routes/ToForeign";
 import ToKorean from "../Routes/ToKorean";
 import AboutUs from "../Routes/AboutUs"
-/* import Contact from "../Routes/Contact"
-import HowTo from "../Routes/HowTo" */
+import Contact from "../Routes/Contact"
+//import HowTo from "../Routes/HowTo"
 import Footer from "./Footer";
 import Construction from "./Construction";
 
@@ -34,11 +34,11 @@ const RouterComponent = ({ serverStatus }) => {
             <Route path="/about">
               <AboutUs />
             </Route>
-            <Route path="/how-to">
+            <Route path="/wip">
               <Construction />
             </Route>
             <Route path="/contact">
-              <Construction />
+              <Contact />
             </Route>
           </>
         ) : null}

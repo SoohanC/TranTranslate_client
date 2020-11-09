@@ -1,6 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-
+import image from "../images/drawing.png";
 
 const FadeIn = keyframes`
   0% {
@@ -11,40 +12,84 @@ const FadeIn = keyframes`
   }
 `;
 
+
 const Container = styled.div`
   width: 100%;
-  height: 100%;
   padding-top: 110px;
-  animation: 0.5s ${FadeIn} ease-in;
+  animation: ${FadeIn} 0.4s ease-in;
 `;
 
-const Block = styled.div`
-    margin:100px;
+const Wrapper = styled.div`
+  width: 800px;
+  margin: 150px auto;
+`;
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 50px;
+`;
+const MainHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const MainTitle = styled.div`
+  font-size: 70px;
+  font-weight: 600;
+  color: #1e272e;
+  margin: 15px 0px;
+`;
+const MainDescripton = styled.div`
+  margin: 20px 5px;
+  line-height: 24px;
+`;
+const LinkButton = styled.button`
+  margin-top: 15px;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #00a8ff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 220px;
+  font-size: 16px;
+  &:hover {
+    &:hover {
+      background-color: #005f8e;
+    }
+  }
 `;
 
-const EmojiBlock = styled.div`
-  font-size: 100px;
-  text-align:center;
-  margin: 30px 0px;
+const ImageContainer = styled.div`
+  width: 220px;
+  height: 220px;
+  background-size: contain, cover;
+  background-image: url(${image});
 `;
-
-const MessageBlock =styled.div`
- text-align:center;
-  margin: 30px 0px;
-`
-
 
 const Construction = () => {
+  const history = useHistory();
+
+  const onClick = ()=>{
+    history.push("/to-foreign");
+  }
   return (
     <Container>
-     <Block>
-     <EmojiBlock>
-          🚧
-      </EmojiBlock>
-      <MessageBlock>
-         현재 개발중인 페이지 입니다.
-      </MessageBlock>
-     </Block>
+      <Wrapper>
+        <Row>
+          <MainHolder>
+            <MainTitle>공사중!</MainTitle>
+            <MainDescripton>
+              현재 구현 중인 기능입니다.
+              <br /> 완성되는대로 업데이트 하겠습니다.
+            </MainDescripton>
+            <LinkButton onClick={onClick}>번역기로 되돌아가기</LinkButton>
+          </MainHolder>
+          <ImageContainer />
+        </Row>
+      </Wrapper>
     </Container>
   );
 };

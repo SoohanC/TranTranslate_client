@@ -70,6 +70,7 @@ const ToForeignContainer = ()=>{
                 let cost  = totalCost + original.replaceAll("\n"," ").length + transResult.translation.length;
                 setTotalCost(cost)
                 const sound = new Audio(completeSound);
+                sound.volume=0.5;
                 sound.play();
                 setTurn(1)
             } catch (error) {
@@ -101,6 +102,7 @@ const ToForeignContainer = ()=>{
                 let cost = totalCost + translation.replaceAll("\n"," ").length*2 + transResult.trans1.length +transResult.trans2.length;
                 setTotalCost(cost)
                 const sound = new Audio(completeSound);
+                sound.volume=0.5;
                 sound.play();
                 setTurn(2)
 
