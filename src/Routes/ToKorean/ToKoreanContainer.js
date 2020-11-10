@@ -61,6 +61,7 @@ const ToKoreanContainer = () => {
       try {
         setLoading(true);
         const res = await translateAPI.transToKor(data);
+        console.log(res)
         const { trans1, trans2, trans3, result1, result2, result3 } = res.data;
         const trans = [trans1, trans2, trans3];
         const receivedResult = [result1, result2, result3];

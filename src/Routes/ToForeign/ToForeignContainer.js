@@ -73,8 +73,8 @@ const ToForeignContainer = ()=>{
                 sound.volume=0.5;
                 sound.play();
                 setTurn(1)
-            } catch (error) {
-                console.log(error)
+            } catch (err) {
+                console.log(err)
             }finally{
                 setLoading(false)
             }

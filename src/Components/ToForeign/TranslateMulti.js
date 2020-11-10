@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import ReactTooltip from 'react-tooltip';
+import styled, { keyframes } from "styled-components";
+
+const FadeIn = keyframes`
+  0% {
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+`;
 
 const TranslateBlock = styled.div`
+position: relative;
   min-width: 450px;
   margin: 10px 20px;
 `;
@@ -32,6 +41,16 @@ const TextArea = styled.textarea`
 const Info = styled.span`
   color: gray;
 `;
+const Copied = styled.span`
+  position:absolute;
+  display: ${(props)=> props.copied ? "inline" : "none"};
+  bottom: 50px;
+  left:140px;
+  z-index:3;
+  color: blue;
+  font-size:14px;
+  animation: ${FadeIn} 0.4s ease-in-out;
+`;
 const Arrow = styled.i`
   font-size: 24px;
   color: ${props=>props.turn ===2 ? "#1dd1a1" : "gray"};
@@ -40,6 +59,7 @@ const Arrow = styled.i`
 const TranslateMulti = ({ destination, translation ,turn}) => {
   const [dest, setDest] = useState("");
   const [textLeng, setTextLeng] = useState(0);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     switch (destination) {
@@ -57,6 +77,15 @@ const TranslateMulti = ({ destination, translation ,turn}) => {
     setTextLeng(translation.length)
   }, [destination,translation]);
 
+  const copyClipboard = async (e) => {
+    const text = e.target.value;
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(()=>{
+      setCopied(false);
+    },600)
+  };
+
   return (
     <>
       <TranslateBlock>
@@ -64,14 +93,9 @@ const TranslateMulti = ({ destination, translation ,turn}) => {
           <Label>다중 번역</Label>
           <Language>{dest}</Language>
         </ModuleRow>
-        <TextArea 
-        data-tip
-        data-for='copyTooltip'
-        data-event='click'
+        <TextArea onClick={copyClipboard}
         turn={turn} readOnly value={translation} placeholder="여기에 다중 번역 결과가 출력됩니다."/>
-        <ReactTooltip id="copyTooltip" place="top" type="dark" effect="float" globalEventOff='click' delayHide={400}>
-            클립보드에 복사되었습니다.
-          </ReactTooltip>
+        <Copied copied={copied}>클립보드에 복사되었습니다.</Copied>
         <ModuleRow>
           <Info>글자 수 : {textLeng}</Info>
           <Info></Info>

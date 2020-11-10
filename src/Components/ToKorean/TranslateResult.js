@@ -1,8 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import ReactTooltip from "react-tooltip";
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+
+const FadeIn = keyframes`
+  0% {
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+`;
 
 const TranslateBlock = styled.div`
+  position: relative;
   min-width: 450px;
   margin: 10px 20px;
 `;
@@ -33,12 +42,27 @@ const TextArea = styled.textarea`
 const Info = styled.span`
   color: gray;
 `;
+const Copied = styled.span`
+  position:absolute;
+  display: ${(props)=> props.copied ? "inline" : "none"};
+  bottom: 50px;
+  left:140px;
+  z-index:3;
+  color: blue;
+  font-size:14px;
+  animation: ${FadeIn} 0.4s ease-in-out;
+`;
 
 const TranslateResult = ({ result, turn }) => {
+  const [copied, setCopied] = useState(false);
+
   const copyClipboard = async (e) => {
     const text = e.target.value;
     await navigator.clipboard.writeText(text);
-    console.log("copied");
+    setCopied(true);
+    setTimeout(()=>{
+      setCopied(false);
+    },600)
   };
 
   return (
@@ -48,18 +72,13 @@ const TranslateResult = ({ result, turn }) => {
         <Language>한국어 (Korean)</Language>
       </ModuleRow>
       <TextArea
-        data-tip
-        data-for="copyTooltip"
-        data-event='click'
         readOnly
         value={result}
         turn={turn}
         placeholder="여기에 최종 번역 결과가 출력됩니다."
         onClick={copyClipboard}
       />
-      <ReactTooltip id="copyTooltip" place="top" type="dark" effect="float" globalEventOff='click' delayHide={800}>
-        클립보드에 복사되었습니다.
-      </ReactTooltip>
+      <Copied copied={copied}>클립보드에 복사되었습니다.</Copied>
       <ModuleRow>
         <Info></Info>
         <Info></Info>
