@@ -18,6 +18,7 @@ const HeaderBlock = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index:4;
 `;
 
 const Navbar = styled.div`
