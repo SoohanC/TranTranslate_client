@@ -1,130 +1,157 @@
-import React from "react";
+import { Grid, Hidden, IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
-const FadeIn = keyframes`
-  0% {
-    opacity:0;
-  }
-  100%{
-    opacity:1;
-  }
-`;
-
-
+const styles = (theme) => ({
+  logo:{
+    display:"flex",
+    justifyContent:"flex-start",
+  },
+  menu: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  link: {
+    display: "flex",
+    justifyContent: "flex-end",
+    paddingRight:10,
+  },
+  menuIcon: {
+    color: "white",
+  },
+});
 
 const HeaderBlock = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index:4;
+  z-index: 4;
 `;
 
 const Navbar = styled.div`
- 
   width: 100%;
-  height: 70px;
+  min-height: 50px;
   background-color: #00a8ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0px;
   z-index: 5;
 `;
 
-const LogoBlock = styled.div`
-  position: relative;
-  width: 25%;
-`;
-const Logo = styled.span`
-  margin: 0px 10px;
+const Logo = styled(Link)`
+  margin: 0px 20px;
   font-family: "Amatic SC", cursive;
   color: white;
-  font-size: 40px;
+  font-size: 36px;
 `;
-const Version = styled.span`
-  position: absolute;
-  top: 5px;
-  left: 180px;
-  font-size: 14px;
+const MenuLink = styled(Link)`
   color: white;
-`;
-const MenuBlock = styled.div`
-  width: 300;
   display: flex;
   justify-content: center;
-`;
-const Menu = styled.span`
-  color: white;
   margin: 0px 0px;
   padding: 19px 20px;
-  border-bottom: 4px solid ${props=> props.current === "true" ? "white" : "transparent"};
-  transition: border-bottom .5s linear;
+  border-bottom: 4px solid
+    ${(props) => (props.current === "true" ? "white" : "transparent")};
+  transition: border-bottom 0.5s linear;
 `;
-const LinkBlock = styled.div`
-  width: 25%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-`;
-const Item = styled.span`
+
+const Item = styled(Link)`
   font-size: 14px;
   color: white;
   margin: 0px 20px;
 `;
 
-const Notification = styled.div`
-  width: 100%;
-  height: 40px;
-  background-color: #eff3fe;
-  display: flex;
-  animation: 0.7s ${FadeIn} ease-in;
-`;
-const Message = styled.div`
-  margin: auto;
-  text-align: center;
-  color: #2454b6;
-  font-size: 14px;
-`;
-
-const Header = () => {
+const Header = (props) => {
   const location = useLocation();
+  const { classes } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <HeaderBlock>
       <Navbar>
-        <LogoBlock>
-          <Logo><Link to="/">TranTranslate</Link></Logo>
-          <Version>Alpha</Version>
-        </LogoBlock>
-        <MenuBlock>
-          <Link to="/to-foreign">
-            <Menu current={location.pathname === "/to-foreign" ? "true" : "false" }>한국어 - 외국어</Menu>
-          </Link>
-          <Link to="/to-korean">
-            <Menu current={location.pathname === "/to-korean" ? "true" : "false"}>외국어 - 한국어</Menu>
-          </Link>
-        </MenuBlock>
-        <LinkBlock>
-          <Link to="/about">
-            <Item>서비스 소개</Item>
-          </Link>
-          <Link to="/contact">
-            <Item>문의 </Item>
-          </Link>
-          <Link to="/wip">
-            <Item>다크 모드</Item>
-          </Link>
-        </LinkBlock>
+        <Grid container alignItems="center">
+          <Grid item xs={6} md={4} className={classes.logo}>
+            <Logo to="/">TranTranslate</Logo>
+          </Grid>
+          <Hidden smDown>
+            <Grid item xs={4} className={classes.menu}>
+              <MenuLink
+                to="/to-foreign"
+                current={location.pathname === "/to-foreign" ? "true" : "false"}
+              >
+                한국어 - 외국어
+              </MenuLink>
+              <MenuLink
+                to="/to-korean"
+                current={location.pathname === "/to-korean" ? "true" : "false"}
+              >
+                외국어 - 한국어
+              </MenuLink>
+            </Grid>
+          </Hidden>
+          <Hidden xsDown>
+            <Grid item xs={6} md={4} className={classes.link}>
+              <Item to="/about">서비스 소개</Item>
+              <Item to="/contact">문의 </Item>
+              <Item to="/wip">다크 모드</Item>
+            </Grid>
+          </Hidden>
+          <Hidden smUp>
+            <Grid item xs={6} md={4} className={classes.link}>
+              <IconButton className={classes.menuIcon} onClick={handleClick}>
+                <MoreHorizIcon />
+              </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link to="/about"><MenuItem onClick={handleClose}>서비스 소개</MenuItem></Link>
+                <Link to="/contact"><MenuItem onClick={handleClose}>문의</MenuItem></Link>
+                <Link to="/wip"><MenuItem onClick={handleClose}>다크 모드</MenuItem></Link>
+              </Menu>
+            </Grid>
+          </Hidden>
+        </Grid>
       </Navbar>
-      <Notification>
-        <Message>
-          현재는 100자 이하 번역만 지원합니다. KAKAO 번역엔진을 사용합니다.
-        </Message>
-      </Notification>
+      <Hidden mdUp>
+        <Navbar>
+          <Grid container className={classes.menu}>
+            <Grid item xs={6}>
+              <MenuLink
+                to="/to-foreign"
+                current={location.pathname === "/to-foreign" ? "true" : "false"}
+              >
+                한국어 - 외국어
+              </MenuLink>
+            </Grid>
+            <Grid item xs={6}>
+              <MenuLink
+                to="/to-korean"
+                current={location.pathname === "/to-korean" ? "true" : "false"}
+              >
+                외국어 - 한국어
+              </MenuLink>
+            </Grid>
+          </Grid>
+        </Navbar>
+      </Hidden>
     </HeaderBlock>
   );
 };
 
-export default Header;
+export default withStyles(styles)(Header);
