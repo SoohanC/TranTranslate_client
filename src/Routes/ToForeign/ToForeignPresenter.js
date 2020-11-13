@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled  from "styled-components";
 import TranslateOriginal from "Components/ToForeign/TranslateOriginal";
 import TranslateModule from "Components/ToForeign/TranslateModule";
 import TranslateResult from "Components/ToForeign/TranslateResult";
@@ -7,20 +7,14 @@ import TranslateMulti from "Components/ToForeign/TranslateMulti";
 import Loading from "Components/Loading"
 
 
-const FadeIn = keyframes`
-  0% {
-    opacity:0;
-  }
-  100%{
-    opacity:1;
-  }
-`;
-
 
 const Container = styled.div`
   width: 100%;
-  padding: 120px 100px 0px 100px;
-  animation: 0.5s ${FadeIn} ease-in;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+
+  padding-top: 100px;
 `;
 
 const Row1 = styled.div`
@@ -42,8 +36,8 @@ const Row3 = styled.div`
 `;
 
 const Spacer = styled.div`
-  min-width: 450px;
-  margin: 10px 20px;
+  min-width: 28%;
+  margin: 10px;
 `;
 const ArrowSpacer = styled.div`
   min-width: 24px;

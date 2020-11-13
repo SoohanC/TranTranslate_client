@@ -1,23 +1,13 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import TranslateOriginal from "Components/ToKorean/TranslateOriginal";
 import TranslateModule from "Components/ToKorean/TranslateModule";
 import TranslateResult from "Components/ToKorean/TranslateResult";
 import Loading from "Components/Loading";
 
-const FadeIn = keyframes`
-  0% {
-    opacity:0;
-  }
-  100%{
-    opacity:1;
-  }
-`;
-
 const Container = styled.div`
   width: 100%;
   padding: 120px 100px 0px 100px;
-  animation: 0.5s ${FadeIn} ease-in;
 `;
 
 const Row1 = styled.div`

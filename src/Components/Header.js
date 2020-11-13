@@ -1,4 +1,4 @@
-import { Grid, Hidden, IconButton, Menu, MenuItem, withStyles } from "@material-ui/core";
+import { Grid, Hidden, IconButton, Menu, MenuItem, useMediaQuery, withStyles } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -33,7 +33,7 @@ const HeaderBlock = styled.div`
 
 const Navbar = styled.div`
   width: 100%;
-  min-height: 50px;
+  height: 59px;
   background-color: #00a8ff;
   display: flex;
   justify-content: space-between;
@@ -82,11 +82,11 @@ const Header = (props) => {
     <HeaderBlock>
       <Navbar>
         <Grid container alignItems="center">
-          <Grid item xs={6} md={4} className={classes.logo}>
+          <Grid item xs={6} sm={4} md={4} className={classes.logo}>
             <Logo to="/">TranTranslate</Logo>
           </Grid>
-          <Hidden smDown>
-            <Grid item xs={4} className={classes.menu}>
+          <Hidden xsDown>
+            <Grid item xs={6} md={4}className={classes.menu}>
               <MenuLink
                 to="/to-foreign"
                 current={location.pathname === "/to-foreign" ? "true" : "false"}
@@ -101,15 +101,15 @@ const Header = (props) => {
               </MenuLink>
             </Grid>
           </Hidden>
-          <Hidden xsDown>
-            <Grid item xs={6} md={4} className={classes.link}>
+          <Hidden smDown>
+            <Grid item xs={4} md={4} className={classes.link}>
               <Item to="/about">서비스 소개</Item>
               <Item to="/contact">문의 </Item>
               <Item to="/wip">다크 모드</Item>
             </Grid>
           </Hidden>
-          <Hidden smUp>
-            <Grid item xs={6} md={4} className={classes.link}>
+          <Hidden mdUp>
+            <Grid item xs={6} sm={2} md={4} className={classes.link}>
               <IconButton className={classes.menuIcon} onClick={handleClick}>
                 <MoreHorizIcon />
               </IconButton>
@@ -128,7 +128,7 @@ const Header = (props) => {
           </Hidden>
         </Grid>
       </Navbar>
-      <Hidden mdUp>
+      <Hidden smUp>
         <Navbar>
           <Grid container className={classes.menu}>
             <Grid item xs={6}>

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const TranslateBlock = styled.div`
-  min-width: 450px;
-  margin: 10px 20px;
+  min-width: 28%;
+  margin: 10px;
 `;
 const ModuleRow = styled.div`
   width: 100%;

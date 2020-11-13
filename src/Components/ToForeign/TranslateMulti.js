@@ -12,8 +12,8 @@ const FadeIn = keyframes`
 
 const TranslateBlock = styled.div`
 position: relative;
-  min-width: 450px;
-  margin: 10px 20px;
+  min-width: 28%;
+  margin: 10px;
 `;
 const ModuleRow = styled.div`
   width: 100%;

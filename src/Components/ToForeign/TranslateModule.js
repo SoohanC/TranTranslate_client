@@ -11,8 +11,8 @@ const FadeIn = keyframes`
 `;
 const TranslateBlock = styled.div`
   position: relative;
-  min-width: 450px;
-  margin: 10px 20px;
+  min-width: 28%;
+  margin: 10px;
 `;
 const ModuleRow = styled.div`
   width: 100%; 
@@ -108,7 +108,7 @@ const TranslateModule = ({
           <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
-            <option value="cn">중국어 간체 (Simplified Chinese)</option>
+            <option value="cn">중국어 간체 (Simpl. Chinese)</option>
           </Language>
         </ModuleRow>
         <TextArea
