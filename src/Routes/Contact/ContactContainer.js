@@ -1,3 +1,4 @@
+import { Hidden, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import image from "../../images/chatbot.png";
@@ -20,13 +21,12 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 150px auto;
-`;
-const Row = styled.div`
   display: flex;
+  flex-direction: ${props=>props.matches ? "row" : "column"};
   justify-content: center;
   align-items: center;
   padding: 0px 50px;
+  margin:  ${props=>props.matches ? "150px auto" : "50px auto"};;
 `;
 const MainHolder = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const MainHolder = styled.div`
   justify-content: space-between;
 `;
 const MainTitle = styled.div`
-  font-size: 70px;
+  font-size: ${props=>props.matches ? "70px" : "60px"};
   font-weight: 600;
   color: #1e272e;
   margin: 15px 0px;
@@ -44,7 +44,8 @@ const MainDescripton = styled.div`
   line-height: 24px;
 `;
 const LinkButton = styled.button`
-  margin-top: 15px;
+  width:${props=>props.matches ? "100%" : "100%"};
+  margin-top: 5px;
   cursor: pointer;
   padding: 10px 20px;
   background-color: #00a8ff;
@@ -52,7 +53,6 @@ const LinkButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
-  width: 220px;
   font-size: 16px;
   &:hover {
     &:hover {
@@ -61,14 +61,19 @@ const LinkButton = styled.button`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   width: 220px;
-  height: 220px;
-  background-size: contain, cover;
-  background-image: url(${image});
+  margin:0px 50px;
 `;
 
+const Spacer =styled.div`
+  margin:30px 0px;
+`;
+
+
 const ContactContainer = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
   
     const sendEmail = ()=>{
         const link = "mailto:soohancho@icloud.com"
@@ -78,18 +83,19 @@ const ContactContainer = () => {
 
   return (
     <Container>
-      <Wrapper>
-        <Row>
+      <Wrapper matches={matches}>
           <MainHolder>
-            <MainTitle>문의하기</MainTitle>
+            <MainTitle matches={matches}>문의하기</MainTitle>
             <MainDescripton>
               문의 또는 건의사항이 있으시면 연락주세요.
               <br /> 적극적으로 반영하겠습니다.
             </MainDescripton>
-            <LinkButton onClick={sendEmail}>메일 보내기</LinkButton>
+            <LinkButton matches={matches} onClick={sendEmail}>메일 보내기</LinkButton>
           </MainHolder>
-          <ImageContainer />
-        </Row>
+          <Hidden mdup>
+              <Spacer/>
+          </Hidden>
+          <ImageContainer src={image}/>
       </Wrapper>
     </Container>
   );

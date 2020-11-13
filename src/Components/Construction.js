@@ -1,3 +1,4 @@
+import { Hidden, useMediaQuery, useTheme } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
@@ -20,14 +21,13 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 800px;
-  margin: 150px auto;
-`;
-const Row = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: ${props=>props.matches ? "row" : "column"};
+  justify-content: center;
   align-items: center;
   padding: 0px 50px;
+  margin:  ${props=>props.matches ? "150px auto" : "50px auto"};;
 `;
 const MainHolder = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const MainHolder = styled.div`
   justify-content: space-between;
 `;
 const MainTitle = styled.div`
-  font-size: 70px;
+  font-size: ${props=>props.matches ? "70px" : "60px"};
   font-weight: 600;
   color: #1e272e;
   margin: 15px 0px;
@@ -45,7 +45,7 @@ const MainDescripton = styled.div`
   line-height: 24px;
 `;
 const LinkButton = styled.button`
-  margin-top: 15px;
+  margin-top: 5px;
   cursor: pointer;
   padding: 10px 20px;
   background-color: #00a8ff;
@@ -53,7 +53,7 @@ const LinkButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
-  width: 220px;
+  width:${props=>props.matches ? "100%" : "100%"};
   font-size: 16px;
   &:hover {
     &:hover {
@@ -62,14 +62,19 @@ const LinkButton = styled.button`
   }
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   width: 220px;
-  height: 220px;
-  background-size: contain, cover;
-  background-image: url(${image});
+  margin:0px 50px;
 `;
 
+const Spacer =styled.div`
+  margin:30px 0px;
+`;
+
+
 const Construction = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
   const history = useHistory();
 
   const onClick = ()=>{
@@ -77,18 +82,19 @@ const Construction = () => {
   }
   return (
     <Container>
-      <Wrapper>
-        <Row>
+      <Wrapper matches={matches}>
           <MainHolder>
-            <MainTitle>공사중!</MainTitle>
+            <MainTitle matches={matches}>공사중!</MainTitle>
             <MainDescripton>
               현재 구현 중인 기능입니다.
               <br /> 완성되는대로 업데이트 하겠습니다.
             </MainDescripton>
-            <LinkButton onClick={onClick}>번역기로 되돌아가기</LinkButton>
+            <LinkButton matches={matches}onClick={onClick}>번역기로 되돌아가기</LinkButton>
           </MainHolder>
-          <ImageContainer />
-        </Row>
+          <Hidden mdup>
+              <Spacer/>
+          </Hidden>
+          <ImageContainer src={image}/>
       </Wrapper>
     </Container>
   );
