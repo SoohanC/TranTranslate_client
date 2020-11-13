@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -29,44 +29,69 @@ const Textarea = styled.textarea`
   height: 250px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #d3d3d3;
+  border: ${(props) =>
+    props.turn === 2 ? "2px solid #1dd1a1" : "1px solid #d3d3d3"};
   font-size: 20px;
   resize: none;
   outline: none;
   transition: border 0.4s ease-in-out;
 `;
 const Arrow = styled.div`
-    display: flex;
+  display: flex;
   justify-content: center;
-  font-size:30px;
-  margin:10px 0px;
+  font-size: 30px;
+  margin: 10px 0px;
+  color:${props=>props.turn === 2 ? "#1dd1a1": "gray"};
 `;
 
+const MultiTrans = ({ turn,destination, translation, result, jaccard, leven }) => {
+  const [dest, setDest] = useState("");
+  const [textLeng, setTextLeng] = useState(0);
 
-const MultiTrans = () => {
+
+  useEffect(() => {
+    switch (destination) {
+      case "en":
+        setDest("영어 (English)");
+        break;
+      case "jp":
+        setDest("일본어 (Japanese)");
+        break;
+      case "cn":
+        setDest("중국어 (Simp. Chinese)");
+        break;
+      default:
+    }
+    setTextLeng(translation.length)
+  }, [destination,translation]);
+
+
   return (
     <Container>
       <TransContainer>
         <TransRow>
           <Label>다중 번역</Label>
-          <LangType>한국어 (Korean)</LangType>
+          <LangType>{dest}</LangType>
         </TransRow>
-        <Textarea placeholder="여기에 다중 번역 결과가 출력됩니다."/>
+        <Textarea  turn={turn} readOnly
+          value={translation} placeholder="여기에 다중 번역 결과가 출력됩니다." />
         <TransRow>
-          <TransInfo>글자 수 : 0</TransInfo>
+          <TransInfo>글자 수 : {textLeng}</TransInfo>
           <TransInfo></TransInfo>
         </TransRow>
       </TransContainer>
-      <Arrow><i className="fas fa-angle-double-down" /></Arrow>
+      <Arrow turn={turn}>
+        <i className="fas fa-angle-double-down" />
+      </Arrow>
       <TransContainer>
         <TransRow>
           <Label>재번역</Label>
           <LangType>한국어 (Korean)</LangType>
         </TransRow>
-        <Textarea placeholder="여기에 재번역 결과가 출력됩니다."/>
+        <Textarea  turn={turn} readOnly value={result} placeholder="여기에 재번역 결과가 출력됩니다." />
         <TransRow>
           <TransInfo>유사도</TransInfo>
-          <TransInfo></TransInfo>
+          <TransInfo>{jaccard} - {leven}</TransInfo>
         </TransRow>
       </TransContainer>
     </Container>

@@ -4,9 +4,6 @@ import TranslateOriginal from "Components/ToForeign/TranslateOriginal";
 import TranslateModule from "Components/ToForeign/TranslateModule";
 import TranslateResult from "Components/ToForeign/TranslateResult";
 import TranslateMulti from "Components/ToForeign/TranslateMulti";
-import Loading from "Components/Loading"
-
-
 
 const Container = styled.div`
   width: 100%;
@@ -60,7 +57,6 @@ const ToForeignPresenter = ({
   multiTrans2,
   multiResult1,
   multiResult2,
-  loading,
   turn,
 }) => {
   return (
@@ -77,13 +73,11 @@ const ToForeignPresenter = ({
             onSelectChange={onSelectChange}
             handleMultiTrans={handleMultiTrans}
             translation={translation}
-            loading={loading}
             turn={turn}
           />
           <TranslateResult
             result={result}
             turn={turn}
-            loading={loading}
             jaccard={similarity ? similarity[0] : null}
             leven={similarity ? similarity[1] : null}
             type="1"
@@ -122,7 +116,7 @@ const ToForeignPresenter = ({
           />
         </Row3>
       </Container>
-      {loading? <Loading/> :null}
+      
     </>
   );
 };

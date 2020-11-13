@@ -15,7 +15,7 @@ import Contact from "../Routes/Contact"
 import Footer from "./Footer";
 import Construction from "./Construction";
 import { Hidden } from "@material-ui/core";
-import ToForeignMobile from "../Routes/ToForeign/Mobile/ToForeignMobile"
+
 import ToKoreanMobile from "../Routes/ToKorean/Mobile/ToKoreanMobile"
 
 const RouterComponent = ({ serverStatus }) => {
@@ -29,12 +29,7 @@ const RouterComponent = ({ serverStatus }) => {
         {serverStatus ? (
           <>
             <Route path="/to-foreign">
-              <Hidden smDown>
               <ToForeign />
-              </Hidden>
-              <Hidden mdUp>
-                <ToForeignMobile/>
-              </Hidden>
             </Route>
             <Route path="/to-korean">
               <Hidden smDown>

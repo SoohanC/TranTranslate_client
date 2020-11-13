@@ -2,7 +2,9 @@ import { translateAPI } from "api";
 import React, { useState } from "react"
 import ToForeignPresenter from "./ToForeignPresenter"
 import completeSound from "../../sounds/finished.wav"
-
+import ToForeignMobile from "./Mobile/ToForeignMobile"
+import { Hidden } from "@material-ui/core";
+import Loading from "Components/Loading"
 
 const ToForeignContainer = ()=>{
     const [totalCost,setTotalCost] = useState(0)
@@ -116,6 +118,8 @@ const ToForeignContainer = ()=>{
     }
 
     return(
+        <>
+        <Hidden smDown>
         <ToForeignPresenter
             totalCost={totalCost}
             original={original}
@@ -129,13 +133,35 @@ const ToForeignContainer = ()=>{
             multiResult1={multiResult1}
             multiResult2={multiResult2}
             multiSimil={multiSimil}
-            loading={loading}
             onChange={onChange}
             onSelectChange={onSelectChange}
             turn={turn}
             handleTranslate={handleTranslate}
             handleMultiTrans={handleMultiTrans}
         />
+        </Hidden>
+        <Hidden mdUp>
+            <ToForeignMobile
+             original={original}
+             onChange={onChange}
+             translation={translation}
+             handleTranslate={handleTranslate}
+             handleMultiTrans={handleMultiTrans}
+             onSelectChange={onSelectChange}
+             result={result}
+             similarity={similarity}
+             multiDest1={multiDest1}
+             multiDest2={multiDest2}
+             multiTrans1={multiTrans1}
+             multiTrans2={multiTrans2}
+             multiResult1={multiResult1}
+             multiResult2={multiResult2}
+             multiSimil={multiSimil}
+             turn={turn}
+            />
+        </Hidden>
+        {loading? <Loading/> :null}
+        </>
     )
 }
 
