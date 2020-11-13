@@ -1,6 +1,6 @@
 import { Tab, Tabs, useMediaQuery, useTheme } from "@material-ui/core";
-import MultiTrans from "Components/ToForeign/Mobile/MultiTrans";
-import ReTranslate from "Components/ToForeign/Mobile/ReTranslate";
+import MultiTrans from "Components/ToKorean/Mobile/MultiTrans";
+import DirectTrans from "Components/ToKorean/Mobile/DirectTrans";
 import React, { useState } from "react";
 import SwipeableViews from 'react-swipeable-views';
 import styled from "styled-components"
@@ -34,9 +34,9 @@ const ToKoreanMobile = () =>{
           variant="fullWidth"
           aria-label="full width tabs example"
         >  
-          <Tab label="재번역" />
-          <Tab label="다중번역 1" />
-          <Tab label="다중번역 2" />
+          <Tab label="다이렉트 번역" />
+          <Tab label="외국어 재번역 1" />
+          <Tab label="외국어 재번역 2" />
         </Tabs>
         <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -44,7 +44,7 @@ const ToKoreanMobile = () =>{
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <ReTranslate/>
+          <DirectTrans/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <MultiTrans/>

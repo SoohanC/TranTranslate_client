@@ -7,7 +7,10 @@ import Loading from "Components/Loading";
 
 const Container = styled.div`
   width: 100%;
-  padding: 120px 100px 0px 100px;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  padding-top: 80px;
 `;
 
 const Row1 = styled.div`
@@ -29,8 +32,8 @@ const Row3 = styled.div`
 `;
 
 const Spacer = styled.div`
-  min-width: 450px;
-  margin: 10px 20px;
+  min-width: 28%;
+  margin: 10px;
 `;
 const ArrowSpacer = styled.i`
   font-size: 24px;

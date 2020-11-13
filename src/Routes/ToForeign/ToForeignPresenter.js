@@ -14,7 +14,7 @@ const Container = styled.div`
   display:flex;
   flex-direction:column;
 
-  padding-top: 100px;
+  padding-top: 80px;
 `;
 
 const Row1 = styled.div`
@@ -90,7 +90,7 @@ const ToForeignPresenter = ({
           />
         </Row1>
         <Row2>
-          <Spacer>이번 세션에서 사용한 글자수: {totalCost}</Spacer>
+          <Spacer>이번 세션에서 사용한 글자수 : {totalCost}</Spacer>
           <ArrowSpacer />
           <TranslateMulti
             destination={multiDest1}

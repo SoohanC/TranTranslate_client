@@ -63,7 +63,7 @@ const TranslateOriginal = ({ onChange, handleTranslate, original,turn }) => {
           placeholder="100자 이내로 입력해 주세요."
         />
         <ModuleRow>
-          <Info>글자 수 : {original.length}/100</Info>
+          <Info>글자 수 : {original.length} / 100</Info>
           <Button onClick={handleTranslate}>번역 하기</Button>
         </ModuleRow>
         </>
