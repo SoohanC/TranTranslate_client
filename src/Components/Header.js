@@ -9,7 +9,10 @@ import {
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from "@material-ui/icons/Menu";
+import InfoIcon from "@material-ui/icons/Info";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 const styles = (theme) => ({
   logo: {
@@ -27,6 +30,14 @@ const styles = (theme) => ({
   },
   menuIcon: {
     color: "white",
+  },
+  icon: {
+    marginRight: "6px",
+    color: "gray"
+  },
+  menuItem: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
@@ -59,15 +70,14 @@ const Logo = styled(Link)`
 
 const Version = styled.span`
   position: absolute;
-  background-color:red;
-  color:white;
+  background-color: red;
+  color: white;
   padding: 2px 5px;
-  border-radius:6px;
+  border-radius: 6px;
   top: 0px;
   right: -40px;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 10px;
- 
 `;
 
 const MenuLink = styled(Link)`
@@ -145,13 +155,22 @@ const Header = (props) => {
                 onClose={handleClose}
               >
                 <Link to="/about">
-                  <MenuItem onClick={handleClose}>서비스 소개</MenuItem>
+                  <MenuItem className={classes.menuItem} onClick={handleClose}>
+                    <InfoIcon className={classes.icon} color="inherit" /> 서비스
+                    소개
+                  </MenuItem>
                 </Link>
                 <Link to="/contact">
-                  <MenuItem onClick={handleClose}>문의</MenuItem>
+                  <MenuItem className={classes.menuItem} onClick={handleClose}>
+                    <HelpOutlineIcon className={classes.icon} color="inherit" />{" "}
+                    문의
+                  </MenuItem>
                 </Link>
                 <Link to="/wip">
-                  <MenuItem onClick={handleClose}>다크 모드</MenuItem>
+                  <MenuItem className={classes.menuItem} onClick={handleClose}>
+                    <Brightness4Icon className={classes.icon} color="inherit" />{" "}
+                    다크 모드
+                  </MenuItem>
                 </Link>
               </Menu>
             </Grid>
