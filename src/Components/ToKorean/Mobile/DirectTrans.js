@@ -24,6 +24,21 @@ const TransInfo = styled.span`
   color: gray;
   font-size: 16px;
 `;
+const Button = styled.button`
+  cursor: pointer;
+  padding: 6px 15px;
+  width: 100px;
+  background-color: #00a8ff;
+  outline: none;
+  font-size:16px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: #005f8e;
+  }
+`;
 const Textarea = styled.textarea`
   width: 100%;
   height: 250px;
@@ -62,10 +77,10 @@ const DirectTrans = () => {
             <option value="fr">프랑스어 (French)</option>
           </Language>
         </TransRow>
-        <Textarea placeholder="100자 이내로 입력해주세요"/>
+        <Textarea placeholder="100자 이내로 입력해 주세요."/>
         <TransRow>
           <TransInfo>글자 수 : 0</TransInfo>
-          <TransInfo></TransInfo>
+          <Button>번역</Button>
         </TransRow>
       </TransContainer>
       <Arrow><i className="fas fa-angle-double-down" /></Arrow>
@@ -76,8 +91,6 @@ const DirectTrans = () => {
         </TransRow>
         <Textarea placeholder="여기에 재번역 결과가 출력됩니다."/>
         <TransRow>
-          <TransInfo>유사도</TransInfo>
-          <TransInfo></TransInfo>
         </TransRow>
       </TransContainer>
     </Container>

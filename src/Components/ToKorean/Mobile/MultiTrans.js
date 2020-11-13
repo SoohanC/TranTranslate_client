@@ -35,6 +35,22 @@ const Textarea = styled.textarea`
   outline: none;
   transition: border 0.4s ease-in-out;
 `;
+
+const Button = styled.button`
+  cursor: pointer;
+  padding: 6px 15px;
+  width: 100px;
+  background-color: #00a8ff;
+  outline: none;
+  font-size:16px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: #005f8e;
+  }
+`;
 const Arrow = styled.div`
     display: flex;
   justify-content: center;
@@ -55,8 +71,8 @@ const MultiTrans = () => {
         </TransRow>
         <Textarea placeholder="다이렉트 번역 탭에서 입력하세요"/>
         <TransRow>
-          <TransInfo>유사도</TransInfo>
-          <TransInfo></TransInfo>
+          <TransInfo>글자 수 : 0</TransInfo>
+          <Button>다중 번역</Button>
         </TransRow>
       </TransContainer>
       <Arrow><i className="fas fa-angle-double-down" /></Arrow>
@@ -86,8 +102,6 @@ const MultiTrans = () => {
         </TransRow>
         <Textarea placeholder="여기에 재번역 결과가 출력됩니다."/>
         <TransRow>
-          <TransInfo>유사도</TransInfo>
-          <TransInfo></TransInfo>
         </TransRow>
       </TransContainer>
     </Container>

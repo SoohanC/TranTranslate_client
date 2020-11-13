@@ -19,12 +19,12 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 800px;
+  width: 100%;
   margin: 150px auto;
 `;
 const Row = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0px 50px;
 `;
