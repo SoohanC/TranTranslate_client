@@ -8,7 +8,7 @@ import globalTheme from "./globalTheme";
 const App = () =>{
   const [serverStatus,setServerStatus]=useState(true);
   const [loading, setLoading]=useState(true)
-  const [isDarkMode,setDarkMode] = useState(true)
+  const [isDarkMode,setDarkMode] = useState(false)
 
   const changeMode = async() =>{
     await setDarkMode(!isDarkMode)
@@ -28,6 +28,8 @@ const App = () =>{
       setLoading(false)
     }
   }
+  
+
   useEffect(()=>{
     checkStatus();
   },[])
