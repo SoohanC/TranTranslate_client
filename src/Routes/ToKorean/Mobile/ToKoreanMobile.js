@@ -11,6 +11,7 @@ const Container = styled.div`
 
 const ToKoreanMobile = ({
   onChange,
+  langType,
   original,
   onSelectChange,
   destination1,
@@ -55,7 +56,7 @@ const ToKoreanMobile = ({
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <DirectTrans onChange={onChange} handleTranslate={handleTranslate} original={original} onSelectChange={onSelectChange} result={result[0]} turn={turn}/>
+          <DirectTrans langType={langType} onChange={onChange} handleTranslate={handleTranslate} original={original} onSelectChange={onSelectChange} result={result[0]} turn={turn}/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <MultiTrans original={original} destination={destination2} translation={translation[1]}

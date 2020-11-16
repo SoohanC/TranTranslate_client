@@ -90,6 +90,7 @@ const ToKoreanContainer = () => {
       <Hidden smDown>
         <ToKoreanPresenter
           onChange={onChange}
+          langType={langType}
           original={original}
           onSelectChange={onSelectChange}
           destination1={destination1}
@@ -106,6 +107,7 @@ const ToKoreanContainer = () => {
       <Hidden mdUp>
         <ToKoreanMobile
           onChange={onChange}
+          langType={langType}
           original={original}
           onSelectChange={onSelectChange}
           destination1={destination1}

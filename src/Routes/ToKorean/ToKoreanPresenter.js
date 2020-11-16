@@ -41,6 +41,7 @@ const ArrowSpacer = styled.i`
 
 const ToKoreanPresenter = ({
   onChange,
+  langType,
   original,
   handleTranslate,
   onSelectChange,
@@ -58,6 +59,7 @@ const ToKoreanPresenter = ({
         <Row1>
           <TranslateOriginal
             onChange={onChange}
+            langType={langType}
             original={original}
             onSelectChange={onSelectChange}
             handleTranslate={handleTranslate}

@@ -48,13 +48,13 @@ const Arrow = styled.i`
   color: gray;
 `;
 
-const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChange, }) => {
+const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChange, langType }) => {
   return (
     <>
       <TranslateBlock>
         <ModuleRow>
           <Label>원본</Label>
-          <Language onChange={onSelectChange}>
+          <Language onChange={onSelectChange} value={langType}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
             <option value="cn">중국어 간체 (Simplified Chinese)</option>

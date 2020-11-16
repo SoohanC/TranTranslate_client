@@ -76,13 +76,15 @@ const Language = styled.select`
 `;
 
 
-const DirectTrans = ({onChange, handleTranslate, original , onSelectChange,result, turn}) => {
+const DirectTrans = ({langType, onChange, handleTranslate, original , onSelectChange,result, turn}) => {
+
+
   return (
     <Container>
       <TransContainer>
         <TransRow>
           <Label>원본</Label>
-          <Language onChange={onSelectChange}>
+          <Language onChange={onSelectChange} value={langType}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
             <option value="cn">중국어 간체 (Simp. Chinese)</option>
