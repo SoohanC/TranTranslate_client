@@ -2,7 +2,9 @@ import { translateAPI } from "api";
 import React, { useState } from "react";
 import ToKoreanPresenter from "./ToKoreanPresenter";
 import completeSound from "../../sounds/finished.wav";
-
+import { Hidden } from "@material-ui/core";
+import ToKoreanMobile from "./Mobile/ToKoreanMobile";
+import Loading from "Components/Loading";
 
 const ToKoreanContainer = () => {
   const [original, setOriginal] = useState("");
@@ -43,9 +45,9 @@ const ToKoreanContainer = () => {
         setDestination3("jp");
         break;
       default:
-        setDestination1("en");
-        setDestination2("jp");
-        setDestination3("cn");
+        setDestination1("");
+        setDestination2("en");
+        setDestination3("jp");
         break;
     }
   };
@@ -62,7 +64,7 @@ const ToKoreanContainer = () => {
       try {
         setLoading(true);
         const res = await translateAPI.transToKor(data);
-        console.log(res)
+        console.log(res);
         const { trans1, trans2, trans3, result1, result2, result3 } = res.data;
         const trans = [trans1, trans2, trans3];
         const receivedResult = [result1, result2, result3];
@@ -84,22 +86,42 @@ const ToKoreanContainer = () => {
   };
 
   return (
-    <ToKoreanPresenter
-      onChange={onChange}
-      original={original}
-      onSelectChange={onSelectChange}
-      destination1={destination1}
-      destination2={destination2}
-      destination3={destination3}
-      translation={translation}
-      totalCost={totalCost}
-      result={result}
-      loading={loading}
-      turn={turn}
-      handleTranslate={handleTranslate}
-    />
+    <>
+      <Hidden smDown>
+        <ToKoreanPresenter
+          onChange={onChange}
+          original={original}
+          onSelectChange={onSelectChange}
+          destination1={destination1}
+          destination2={destination2}
+          destination3={destination3}
+          translation={translation}
+          totalCost={totalCost}
+          result={result}
+          loading={loading}
+          turn={turn}
+          handleTranslate={handleTranslate}
+        />
+      </Hidden>
+      <Hidden mdUp>
+        <ToKoreanMobile
+          onChange={onChange}
+          original={original}
+          onSelectChange={onSelectChange}
+          destination1={destination1}
+          destination2={destination2}
+          destination3={destination3}
+          translation={translation}
+          totalCost={totalCost}
+          result={result}
+          loading={loading}
+          turn={turn}
+          handleTranslate={handleTranslate}
+        />
+      </Hidden>
+      {loading? <Loading/> :null}
+    </>
   );
 };
 
 export default ToKoreanContainer;
-

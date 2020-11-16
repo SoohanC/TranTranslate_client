@@ -3,7 +3,6 @@ import styled from "styled-components";
 import TranslateOriginal from "Components/ToKorean/TranslateOriginal";
 import TranslateModule from "Components/ToKorean/TranslateModule";
 import TranslateResult from "Components/ToKorean/TranslateResult";
-import Loading from "Components/Loading";
 
 const Container = styled.div`
   width: 100%;
@@ -51,7 +50,6 @@ const ToKoreanPresenter = ({
   destination1,
   destination2,
   destination3,
-  loading,
   turn,
 }) => {
   return (
@@ -93,7 +91,6 @@ const ToKoreanPresenter = ({
           <TranslateResult result={result[2]} turn={turn} />
         </Row3>
       </Container>
-      {loading ? <Loading /> : null}
     </>
   );
 };

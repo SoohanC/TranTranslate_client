@@ -9,14 +9,12 @@ import Header from "./Header";
 import Home from "../Routes/Home";
 import ToForeign from "../Routes/ToForeign";
 import ToKorean from "../Routes/ToKorean";
-import AboutUs from "../Routes/AboutUs"
-import Contact from "../Routes/Contact"
+import AboutUs from "../Routes/AboutUs";
+import Contact from "../Routes/Contact";
 //import HowTo from "../Routes/HowTo"
 import Footer from "./Footer";
 import Construction from "./Construction";
-import { Hidden } from "@material-ui/core";
 
-import ToKoreanMobile from "../Routes/ToKorean/Mobile/ToKoreanMobile"
 
 const RouterComponent = ({ serverStatus }) => {
   return (
@@ -32,13 +30,7 @@ const RouterComponent = ({ serverStatus }) => {
               <ToForeign />
             </Route>
             <Route path="/to-korean">
-              <Hidden smDown>
               <ToKorean />
-              </Hidden>
-              <Hidden mdUp>
-                <ToKoreanMobile/>
-              </Hidden>
-            
             </Route>
             <Route path="/about">
               <AboutUs />

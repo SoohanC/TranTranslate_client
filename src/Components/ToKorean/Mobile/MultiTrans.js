@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -36,32 +36,58 @@ const Textarea = styled.textarea`
   transition: border 0.4s ease-in-out;
 `;
 
-const Button = styled.button`
-  cursor: pointer;
-  padding: 6px 15px;
-  width: 100px;
-  background-color: #00a8ff;
+const Result = styled.textarea`
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: ${(props) =>
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+  font-size: 20px;
+  resize: none;
   outline: none;
-  font-size:16px;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  transition: background-color 0.3s ease-in-out;
-  &:hover {
-    background-color: #005f8e;
-  }
+  transition: border 0.4s ease-in-out;
 `;
+
+
+
 const Arrow = styled.div`
     display: flex;
   justify-content: center;
   font-size:30px;
   margin:15px 0px;
 `;
-const Language = styled.select`
-  font-size:16px;
-`;
 
-const MultiTrans = () => {
+
+const MultiTrans = ({
+ original, destination, translation, result, turn
+}) => {
+  const [dest, setDest] = useState("");
+  const [transLength, setTransLength] = useState(0);
+
+
+  useEffect(() => {
+    switch (destination) {
+      case "":
+        setDest("");
+        break;
+      case "en":
+        setDest("영어 (English)");
+        break;
+      case "jp":
+        setDest("일본어 (Japanese)");
+        break;
+      case "cn":
+        setDest("중국어 간체 (Simp. Chinese)");
+        break;
+      default:
+        break;
+    }
+    if(translation){
+      setTransLength(translation.length);
+    }
+  }, [destination, translation]);
+
   return (
     <Container>
        <TransContainer>
@@ -69,28 +95,23 @@ const MultiTrans = () => {
           <Label>원본</Label>
           <LangType>영어 (English)</LangType>
         </TransRow>
-        <Textarea placeholder="다이렉트 번역 탭에서 입력하세요"/>
+        <Textarea readOnly value={original} placeholder="다이렉트 번역 탭에서 입력하세요"/>
         <TransRow>
-          <TransInfo>글자 수 : 0</TransInfo>
-          <Button>다중 번역</Button>
+          <TransInfo>글자 수 : {original.length}</TransInfo>
+          <TransInfo></TransInfo>
         </TransRow>
       </TransContainer>
       <Arrow><i className="fas fa-angle-double-down" /></Arrow>
       <TransContainer>
         <TransRow>
           <Label>다중 번역</Label>
-          <Language>
-            <option value="en">영어 (English)</option>
-            <option value="jp">일본어 (Japanese)</option>
-            <option value="cn">중국어 간체 (Simp. Chinese)</option>
-            <option value="de">독일어 (German)</option>
-            <option value="es">스페인어 (Spanish)</option>
-            <option value="fr">프랑스어 (French)</option>
-          </Language>
+          <LangType>{dest}</LangType>
         </TransRow>
-        <Textarea placeholder="여기에 다중 번역 결과가 출력됩니다."/>
+        <Textarea  readOnly
+              value={translation}
+              turn={turn} placeholder="여기에 다중 번역 결과가 출력됩니다."/>
         <TransRow>
-          <TransInfo>글자 수 : 0</TransInfo>
+          <TransInfo>글자 수 : {transLength}</TransInfo>
           <TransInfo></TransInfo>
         </TransRow>
       </TransContainer>
@@ -100,7 +121,9 @@ const MultiTrans = () => {
           <Label>재번역</Label>
           <LangType>한국어 (Korean)</LangType>
         </TransRow>
-        <Textarea placeholder="여기에 재번역 결과가 출력됩니다."/>
+        <Result readOnly
+        value={result}
+        turn={turn} placeholder="여기에 재번역 결과가 출력됩니다."/>
         <TransRow>
         </TransRow>
       </TransContainer>

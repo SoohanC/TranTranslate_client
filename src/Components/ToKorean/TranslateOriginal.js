@@ -48,7 +48,7 @@ const Arrow = styled.i`
   color: gray;
 `;
 
-const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChange }) => {
+const TranslateOriginal = ({ onChange, handleTranslate, original , onSelectChange, }) => {
   return (
     <>
       <TranslateBlock>

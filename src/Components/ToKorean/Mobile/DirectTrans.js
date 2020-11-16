@@ -50,6 +50,20 @@ const Textarea = styled.textarea`
   outline: none;
   transition: border 0.4s ease-in-out;
 `;
+
+const Result = styled.textarea`
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: ${(props) =>
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+  font-size: 20px;
+  resize: none;
+  outline: none;
+  transition: border 0.4s ease-in-out;
+`;
+
 const Arrow = styled.div`
     display: flex;
   justify-content: center;
@@ -62,13 +76,13 @@ const Language = styled.select`
 `;
 
 
-const DirectTrans = () => {
+const DirectTrans = ({onChange, handleTranslate, original , onSelectChange,result, turn}) => {
   return (
     <Container>
       <TransContainer>
         <TransRow>
           <Label>원본</Label>
-          <Language>
+          <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
             <option value="cn">중국어 간체 (Simp. Chinese)</option>
@@ -77,10 +91,10 @@ const DirectTrans = () => {
             <option value="fr">프랑스어 (French)</option>
           </Language>
         </TransRow>
-        <Textarea placeholder="100자 이내로 입력해 주세요."/>
+        <Textarea value={original} onChange={onChange} placeholder="100자 이내로 입력해 주세요."/>
         <TransRow>
-          <TransInfo>글자 수 : 0</TransInfo>
-          <Button>번역</Button>
+          <TransInfo>글자 수 : {original.length} / 100</TransInfo>
+          <Button onClick={handleTranslate}>번역 하기</Button>
         </TransRow>
       </TransContainer>
       <Arrow><i className="fas fa-angle-double-down" /></Arrow>
@@ -89,7 +103,9 @@ const DirectTrans = () => {
           <Label>다이렉트 번역</Label>
           <LangType>한국어 (Korean)</LangType>
         </TransRow>
-        <Textarea placeholder="여기에 재번역 결과가 출력됩니다."/>
+        <Result readOnly
+        value={result}
+        turn={turn} placeholder="여기에 재번역 결과가 출력됩니다."/>
         <TransRow>
         </TransRow>
       </TransContainer>
