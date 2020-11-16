@@ -17,6 +17,7 @@ const FadeIn = keyframes`
 const Container = styled.div`
   width: 100%;
   padding-top: 110px;
+  
   animation: ${FadeIn} 0.4s ease-in;
 `;
 
@@ -91,7 +92,7 @@ const Construction = () => {
             </MainDescripton>
             <LinkButton matches={matches}onClick={onClick}>번역기로 되돌아가기</LinkButton>
           </MainHolder>
-          <Hidden mdup>
+          <Hidden mdUp>
               <Spacer/>
           </Hidden>
           <ImageContainer src={image}/>

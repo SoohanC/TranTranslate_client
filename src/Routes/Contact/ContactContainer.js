@@ -92,7 +92,7 @@ const ContactContainer = () => {
             </MainDescripton>
             <LinkButton matches={matches} onClick={sendEmail}>메일 보내기</LinkButton>
           </MainHolder>
-          <Hidden mdup>
+          <Hidden mdUp>
               <Spacer/>
           </Hidden>
           <ImageContainer src={image}/>
