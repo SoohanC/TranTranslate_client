@@ -62,7 +62,6 @@ const AboutUsContainer = (props) => {
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <Header className="animate__animated animate__fadeInLeft">
             <Logo matches={matches} >TranTranslate</Logo>
-            <Symbol src={logo} matches={matches} />
           </Header>
           <MainTitle className="animate__animated animate__fadeInLeft animate__delay-1s" matches={matches}>
             서비스 소개
