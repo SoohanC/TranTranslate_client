@@ -59,11 +59,11 @@ const ToKoreanMobile = ({
           <DirectTrans langType={langType} onChange={onChange} handleTranslate={handleTranslate} original={original} onSelectChange={onSelectChange} result={result[0]} turn={turn}/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <MultiTrans original={original} destination={destination2} translation={translation[1]}
+          <MultiTrans langType={langType}  original={original} destination={destination2} translation={translation[1]}
             turn={turn} result={result[1]}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <MultiTrans original={original} destination={destination3} translation={translation[2]}
+          <MultiTrans langType={langType} original={original} destination={destination3} translation={translation[2]}
             turn={turn} result={result[2]} />
         </TabPanel>
       </SwipeableViews>
