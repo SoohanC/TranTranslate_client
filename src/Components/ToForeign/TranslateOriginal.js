@@ -15,7 +15,6 @@ const ModuleRow = styled.div`
   padding: 0px 5px;
 `;
 const Label = styled.span`
-  color: gray;
 `;
 const Language = styled.span``;
 const TextArea = styled.textarea`
@@ -23,7 +22,7 @@ const TextArea = styled.textarea`
   height: 150px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid inherit;
   font-size: 16px;
   resize: none;
 `;
@@ -54,8 +53,8 @@ const TranslateOriginal = ({ onChange, handleTranslate, original,turn }) => {
       <TranslateBlock>
         <>
         <ModuleRow>
-          <Label>원본</Label>
-          <Language>한국어 (Korean)</Language>
+          <Label className="module-label">원본</Label>
+          <Language className="language-type">한국어 (Korean)</Language>
         </ModuleRow>
         <TextArea
           value={original}

@@ -16,12 +16,15 @@ const TransRow = styled.div`
   padding: 5px 10px;
 `;
 const Label = styled.span`
-  color: gray;
   font-size: 20px;
 `;
 const LangType = styled.span``;
 const TransInfo = styled.span`
-  color: gray;
+  font-size: 16px;
+  color:gray;
+`;
+
+const TransInfo2 = styled.span`
   font-size: 16px;
 `;
 const Button = styled.button`
@@ -62,7 +65,7 @@ const Textarea = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid inherit"};
   font-size: 20px;
   resize: none;
   outline: none;
@@ -102,8 +105,8 @@ const ReTranslate = ({
     <Container>
       <TransContainer>
         <TransRow>
-          <Label>원본</Label>
-          <LangType>한국어 (Korean)</LangType>
+          <Label className="module-label">원본</Label>
+          <LangType className="language-type">한국어 (Korean)</LangType>
         </TransRow>
         <Textarea
           value={original}
@@ -120,7 +123,7 @@ const ReTranslate = ({
       </Arrow>
       <TransContainer>
         <TransRow>
-          <Label>번역</Label>
+          <Label className="module-label">번역</Label>
           <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
@@ -140,13 +143,13 @@ const ReTranslate = ({
       </Arrow>
       <TransContainer>
         <TransRow>
-          <Label>재번역</Label>
-          <LangType>한국어 (Korean)</LangType>
+          <Label className="module-label">재번역</Label>
+          <LangType className="language-type">한국어 (Korean)</LangType>
         </TransRow>
         <Textarea turn={turn} readOnly value={result} placeholder="여기에 재번역 결과가 출력됩니다." />
         <TransRow>
-          <TransInfo>유사도</TransInfo>
-          <TransInfo>{jaccard} - {leven}</TransInfo>
+          <TransInfo2 className="module-label">유사도</TransInfo2>
+          <TransInfo2 className="similarity">{jaccard} - {leven}</TransInfo2>
         </TransRow>
       </TransContainer>
     </Container>

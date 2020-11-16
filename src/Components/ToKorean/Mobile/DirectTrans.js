@@ -16,7 +16,6 @@ const TransRow = styled.div`
   padding: 5px 10px;
 `;
 const Label = styled.span`
-  color: gray;
   font-size: 20px;
 `;
 const LangType = styled.span``;
@@ -44,7 +43,7 @@ const Textarea = styled.textarea`
   height: 250px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid inherit;
   font-size: 20px;
   resize: none;
   outline: none;
@@ -57,7 +56,7 @@ const Result = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid inherit"};
   font-size: 20px;
   resize: none;
   outline: none;
@@ -65,10 +64,11 @@ const Result = styled.textarea`
 `;
 
 const Arrow = styled.div`
-    display: flex;
+  display: flex;
   justify-content: center;
   font-size:30px;
   margin:10px 0px;
+  color:gray;
 `;
 
 const Language = styled.select`
@@ -83,7 +83,7 @@ const DirectTrans = ({langType, onChange, handleTranslate, original , onSelectCh
     <Container>
       <TransContainer>
         <TransRow>
-          <Label>원본</Label>
+          <Label className="module-label">원본</Label>
           <Language onChange={onSelectChange} value={langType}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
@@ -102,8 +102,8 @@ const DirectTrans = ({langType, onChange, handleTranslate, original , onSelectCh
       <Arrow><i className="fas fa-angle-double-down" /></Arrow>
       <TransContainer>
         <TransRow>
-          <Label>다이렉트 번역</Label>
-          <LangType>한국어 (Korean)</LangType>
+          <Label className="module-label">다이렉트 번역</Label>
+          <LangType className="language-type">한국어 (Korean)</LangType>
         </TransRow>
         <Result readOnly
         value={result}

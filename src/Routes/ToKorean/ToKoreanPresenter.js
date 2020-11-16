@@ -73,7 +73,7 @@ const ToKoreanPresenter = ({
           <TranslateResult result={result[0]} turn={turn} />
         </Row1>
         <Row2>
-          <Spacer>이번 세션에서 사용한 글자수 : {totalCost}</Spacer>
+          <Spacer className="language-type">이번 세션에서 사용한 글자수 : {totalCost}</Spacer>
           <ArrowSpacer className="fas fa-angle-double-right" />
           <TranslateModule
             destination={destination2}

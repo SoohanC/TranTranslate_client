@@ -52,7 +52,6 @@ const HeaderBlock = styled.div`
 const Navbar = styled.div`
   width: 100%;
   height: 59px;
-  background-color: #00a8ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +69,6 @@ const Logo = styled(Link)`
 
 const Version = styled.span`
   position: absolute;
-  background-color: red;
   color: white;
   padding: 2px 5px;
   border-radius: 6px;
@@ -97,6 +95,15 @@ const Item = styled(Link)`
   margin: 0px 20px;
 `;
 
+const DarkMode = styled.div`
+   cursor:pointer;
+   font-size: 14px;
+   color: white;
+   margin: 0px 20px;
+`;
+
+const DarkMode2 =styled.span``
+
 const Header = (props) => {
   const location = useLocation();
   const { classes } = props;
@@ -112,11 +119,11 @@ const Header = (props) => {
 
   return (
     <HeaderBlock>
-      <Navbar>
+      <Navbar className="header">
         <Grid container alignItems="center">
           <Grid item xs={6} sm={4} md={4} className={classes.logo}>
             <Logo to="/">
-              TranTranslate<Version>Alpha</Version>
+              TranTranslate<Version className="version">Alpha</Version>
             </Logo>
           </Grid>
           <Hidden xsDown>
@@ -139,7 +146,7 @@ const Header = (props) => {
             <Grid item xs={4} md={4} className={classes.link}>
               <Item to="/about">서비스 소개</Item>
               <Item to="/contact">문의 </Item>
-              <Item to="/wip">다크 모드</Item>
+              <DarkMode onClick={props.setDarkMode} >다크 모드</DarkMode>
             </Grid>
           </Hidden>
           <Hidden mdUp>
@@ -166,19 +173,19 @@ const Header = (props) => {
                     문의
                   </MenuItem>
                 </Link>
-                <Link to="/wip">
+                <DarkMode2 onClick={props.setDarkMode}>
                   <MenuItem className={classes.menuItem} onClick={handleClose}>
                     <Brightness4Icon className={classes.icon} color="inherit" />{" "}
                     다크 모드
                   </MenuItem>
-                </Link>
+                </DarkMode2>
               </Menu>
             </Grid>
           </Hidden>
         </Grid>
       </Navbar>
       <Hidden smUp>
-        <Navbar>
+        <Navbar className="header">
           <Grid container className={classes.menu}>
             <Grid item xs={6}>
               <MenuLink

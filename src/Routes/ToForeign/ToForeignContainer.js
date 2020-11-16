@@ -6,7 +6,7 @@ import ToForeignMobile from "./Mobile/ToForeignMobile"
 import { Hidden } from "@material-ui/core";
 import Loading from "Components/Loading"
 
-const ToForeignContainer = ()=>{
+const ToForeignContainer = ({isDarkMode})=>{
     const [totalCost,setTotalCost] = useState(0)
     const [original,setOriginal] = useState("");
     const [translation,setTranslation] = useState("");
@@ -142,6 +142,7 @@ const ToForeignContainer = ()=>{
         </Hidden>
         <Hidden mdUp>
             <ToForeignMobile
+            isDarkMode={isDarkMode}
              original={original}
              onChange={onChange}
              translation={translation}

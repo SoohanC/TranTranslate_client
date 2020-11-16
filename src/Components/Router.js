@@ -11,15 +11,14 @@ import ToForeign from "../Routes/ToForeign";
 import ToKorean from "../Routes/ToKorean";
 import AboutUs from "../Routes/AboutUs";
 import Contact from "../Routes/Contact";
-//import HowTo from "../Routes/HowTo"
 import Footer from "./Footer";
 import Construction from "./Construction";
 
 
-const RouterComponent = ({ serverStatus }) => {
+const RouterComponent = ({ serverStatus ,isDarkMode, setDarkMode}) => {
   return (
     <Router>
-      <Header />
+      <Header setDarkMode={setDarkMode} />
       <Switch>
         <Route exact path="/">
           <Home serverStatus={serverStatus} />
@@ -27,10 +26,10 @@ const RouterComponent = ({ serverStatus }) => {
         {serverStatus ? (
           <>
             <Route path="/to-foreign">
-              <ToForeign />
+              <ToForeign isDarkMode={isDarkMode}/>
             </Route>
             <Route path="/to-korean">
-              <ToKorean />
+              <ToKorean isDarkMode={isDarkMode}/>
             </Route>
             <Route path="/about">
               <AboutUs />
@@ -38,8 +37,8 @@ const RouterComponent = ({ serverStatus }) => {
             <Route path="/wip">
               <Construction />
             </Route>
-            <Route path="/contact">
-              <Contact />
+             <Route path="/contact">
+              <Contact/>
             </Route>
           </>
         ) : null}

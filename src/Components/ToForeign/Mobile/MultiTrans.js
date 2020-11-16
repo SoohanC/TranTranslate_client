@@ -16,7 +16,6 @@ const TransRow = styled.div`
   padding: 5px 10px;
 `;
 const Label = styled.span`
-  color: gray;
   font-size: 20px;
 `;
 const LangType = styled.span``;
@@ -30,7 +29,7 @@ const Textarea = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 2 ? "2px solid #1dd1a1" : "1px solid #d3d3d3"};
+    props.turn === 2 ? "2px solid #1dd1a1" : "1px solid inherit"};
   font-size: 20px;
   resize: none;
   outline: none;
@@ -70,8 +69,8 @@ const MultiTrans = ({ turn,destination, translation, result, jaccard, leven }) =
     <Container>
       <TransContainer>
         <TransRow>
-          <Label>다중 번역</Label>
-          <LangType>{dest}</LangType>
+          <Label className="module-label">다중 번역</Label>
+          <LangType className="language-type">{dest}</LangType>
         </TransRow>
         <Textarea  turn={turn} readOnly
           value={translation} placeholder="여기에 다중 번역 결과가 출력됩니다." />
@@ -85,13 +84,13 @@ const MultiTrans = ({ turn,destination, translation, result, jaccard, leven }) =
       </Arrow>
       <TransContainer>
         <TransRow>
-          <Label>재번역</Label>
-          <LangType>한국어 (Korean)</LangType>
+          <Label className="module-label">재번역</Label>
+          <LangType className="language-type">한국어 (Korean)</LangType>
         </TransRow>
         <Textarea  turn={turn} readOnly value={result} placeholder="여기에 재번역 결과가 출력됩니다." />
         <TransRow>
           <TransInfo>유사도</TransInfo>
-          <TransInfo>{jaccard} - {leven}</TransInfo>
+          <TransInfo className="similarity">{jaccard} - {leven}</TransInfo>
         </TransRow>
       </TransContainer>
     </Container>

@@ -18,7 +18,6 @@ const ModuleRow = styled.div`
   padding: 0px 5px;
 `;
 const Label = styled.span`
-  color: gray;
 `;
 const Language = styled.div``;
 const TextArea = styled.textarea`
@@ -26,7 +25,7 @@ const TextArea = styled.textarea`
   height: 150px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid inherit;
   font-size: 16px;
   resize: none;
   outline: none;
@@ -76,8 +75,8 @@ const TranslateModule = ({ translation, turn, destination }) => {
         ) : (
           <>
             <ModuleRow>
-              <Label>번역</Label>
-              <Language>{dest}</Language>
+              <Label className="module-label">번역</Label>
+              <Language className="language-type">{dest}</Language>
             </ModuleRow>
             <TextArea
               readOnly
@@ -86,7 +85,7 @@ const TranslateModule = ({ translation, turn, destination }) => {
               placeholder="여기에 1차 번역이 입력됩니다."
             />
             <ModuleRow>
-              <Info>글자 수 :{transLength}</Info>
+              <Info>글자 수 : {transLength}</Info>
               <Info></Info>
             </ModuleRow>
           </>

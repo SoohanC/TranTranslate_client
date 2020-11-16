@@ -1,4 +1,4 @@
-import { Tab, Tabs, useMediaQuery, useTheme } from "@material-ui/core";
+import { makeStyles, Tab, Tabs, useMediaQuery, useTheme } from "@material-ui/core";
 import MultiTrans from "Components/ToForeign/Mobile/MultiTrans";
 import ReTranslate from "Components/ToForeign/Mobile/ReTranslate";
 import React, { useEffect, useState } from "react";
@@ -10,7 +10,19 @@ const Container = styled.div`
   padding-top: ${(props) => (props.mediaQuery ? "60px" : "118px")};
 `;
 
+const useStyles = makeStyles(theme=>({
+  indicatorDark:{
+    backgroundColor:"#95afc0",
+  },
+  indicatorBright:{
+    backgroundColor:"#95afc0",
+  },
+
+}))
+
+
 const ToForeignMobile = ({
+  isDarkMode,
   original,
   onChange,
   handleTranslate,
@@ -31,6 +43,7 @@ const ToForeignMobile = ({
   const [value, setValue] = useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const classes = useStyles();
 
   const handleValueChange = (event, newValue) => {
     setValue(newValue);
@@ -51,14 +64,14 @@ const ToForeignMobile = ({
       <Tabs
         value={value}
         onChange={handleValueChange}
-        indicatorColor="primary"
-        textColor="primary"
+        TabIndicatorProps={isDarkMode ? { className: classes.indicatorDark } : { className: classes.indicatorBright } }
+        textColor="inherit"
         variant="fullWidth"
         aria-label="full width tabs example"
       >
-        <Tab label="재번역" />
-        <Tab label="다중번역 1" />
-        <Tab label="다중번역 2" />
+        <Tab className="trans-tab" label="재번역" />
+        <Tab className="trans-tab" label="다중번역 1" />
+        <Tab className="trans-tab" label="다중번역 2" />
       </Tabs>
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}

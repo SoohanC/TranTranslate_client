@@ -25,7 +25,6 @@ const ModuleRow = styled.div`
   padding: 0px 5px;
 `;
 const Label = styled.span`
-  color: gray;
 `;
 const Language = styled.span``;
 const TextArea = styled.textarea`
@@ -34,7 +33,7 @@ const TextArea = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 2 ? "2px solid #1dd1a1" : "1px solid #d3d3d3"};
+    props.turn === 2 ? `2px solid #1dd1a1` : `1px solid inherit`};
   font-size: 16px;
   resize: none;
   outline: none;
@@ -91,8 +90,8 @@ const TranslateMulti = ({ destination, translation, turn }) => {
     <>
       <TranslateBlock>
         <ModuleRow>
-          <Label>다중 번역</Label>
-          <Language>{dest}</Language>
+          <Label className="module-label">다중 번역</Label>
+          <Language className="language-type">{dest}</Language>
         </ModuleRow>
         <TextArea
           onClick={copyClipboard}

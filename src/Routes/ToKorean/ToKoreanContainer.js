@@ -6,7 +6,7 @@ import { Hidden } from "@material-ui/core";
 import ToKoreanMobile from "./Mobile/ToKoreanMobile";
 import Loading from "Components/Loading";
 
-const ToKoreanContainer = () => {
+const ToKoreanContainer = ({isDarkMode}) => {
   const [original, setOriginal] = useState("");
   const [langType, setLangType] = useState("en");
   const [destination1, setDestination1] = useState("");
@@ -106,6 +106,7 @@ const ToKoreanContainer = () => {
       </Hidden>
       <Hidden mdUp>
         <ToKoreanMobile
+        isDarkMode={isDarkMode}
           onChange={onChange}
           langType={langType}
           original={original}

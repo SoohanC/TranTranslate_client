@@ -36,7 +36,6 @@ const MainHolder = styled.div`
 const MainTitle = styled.div`
   font-size: ${props=>props.matches ? "70px" : "60px"};
   font-weight: 600;
-  color: #1e272e;
   margin: 15px 0px;
 `;
 const MainDescripton = styled.div`
@@ -48,17 +47,11 @@ const LinkButton = styled.button`
   margin-top: 5px;
   cursor: pointer;
   padding: 10px 20px;
-  background-color: #00a8ff;
   outline: none;
   border: none;
   border-radius: 5px;
   color: white;
   font-size: 16px;
-  &:hover {
-    &:hover {
-      background-color: #005f8e;
-    }
-  }
 `;
 
 const ImageContainer = styled.img`
@@ -85,12 +78,12 @@ const ContactContainer = () => {
     <Container>
       <Wrapper matches={matches}>
           <MainHolder>
-            <MainTitle matches={matches}>문의하기</MainTitle>
-            <MainDescripton>
+            <MainTitle  className="text-primary" matches={matches}>문의하기</MainTitle>
+            <MainDescripton className="text-primary" >
               문의 또는 건의사항이 있으시면 연락주세요.
               <br /> 적극적으로 반영하겠습니다.
             </MainDescripton>
-            <LinkButton matches={matches} onClick={sendEmail}>메일 보내기</LinkButton>
+            <LinkButton className="button-1" matches={matches} onClick={sendEmail}>메일 보내기</LinkButton>
           </MainHolder>
           <Hidden mdUp>
               <Spacer/>

@@ -25,7 +25,6 @@ const ModuleRow = styled.div`
   padding: 0px 5px;
 `;
 const Label = styled.span`
-  color: gray;
 `;
 const Language = styled.span``;
 const TextArea = styled.textarea`
@@ -34,7 +33,7 @@ const TextArea = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid inherit"};
   font-size: 16px;
   resize: none;
   outline: none;
@@ -68,8 +67,8 @@ const TranslateResult = ({ result, turn }) => {
   return (
     <TranslateBlock>
       <ModuleRow>
-        <Label>재번역</Label>
-        <Language>한국어 (Korean)</Language>
+        <Label className="module-label">재번역</Label>
+        <Language className="language-type">한국어 (Korean)</Language>
       </ModuleRow>
       <TextArea
         readOnly

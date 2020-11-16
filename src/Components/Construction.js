@@ -3,6 +3,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import image from "../images/drawing.png";
+import globalTheme from "./globalTheme";
 
 const FadeIn = keyframes`
   0% {
@@ -38,12 +39,13 @@ const MainHolder = styled.div`
 const MainTitle = styled.div`
   font-size: ${props=>props.matches ? "70px" : "60px"};
   font-weight: 600;
-  color: #1e272e;
+  color: ${globalTheme.dark.text.primary};
   margin: 15px 0px;
 `;
 const MainDescripton = styled.div`
   margin: 20px 5px;
   line-height: 24px;
+  color: ${globalTheme.dark.text.primary};
 `;
 const LinkButton = styled.button`
   margin-top: 5px;

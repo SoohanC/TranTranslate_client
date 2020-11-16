@@ -24,7 +24,6 @@ const ModuleRow = styled.div`
   padding: 0px 5px;
 `;
 const Label = styled.span`
-  color: gray;
 `;
 const Language = styled.select``;
 const TextArea = styled.textarea`
@@ -33,7 +32,7 @@ const TextArea = styled.textarea`
   padding: 10px;
   border-radius: 10px;
   border: ${(props) =>
-    props.turn === 1 ? "2px solid #00a8ff" : "1px solid #d3d3d3"};
+    props.turn === 1 ? "2px solid #00a8ff" : "1px solid inherit"};
   font-size: 16px;
   resize: none;
   outline: none;
@@ -63,7 +62,7 @@ const Arrow = styled.i`
 const ArrowDown = styled.i`
   position: absolute;
   bottom: -30px;
-  right: 225px;
+  right:  50%;
   font-size: 24px;
   color: ${(props) => (props.turn === 2 ? "#1dd1a1" : "gray")};
 `;
@@ -104,7 +103,7 @@ const TranslateModule = ({
     <>
       <TranslateBlock>
         <ModuleRow>
-          <Label>번역</Label>
+          <Label className="module-label">번역</Label>
           <Language onChange={onSelectChange}>
             <option value="en">영어 (English)</option>
             <option value="jp">일본어 (Japanese)</option>
