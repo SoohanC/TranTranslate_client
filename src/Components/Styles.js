@@ -50,7 +50,7 @@ select{
 }
 
 .trans-tab {
-    color:gray;
+    color:${props=>props.isDarkMode ? props.theme.dark.tab : props.theme.bright.tab}
 }
 
 .logo {

@@ -21,7 +21,9 @@ const globalTheme = {
     border: {
       primary: "#d3d3d3",
     },
-    logo:"#00a8ff"
+    logo:"#00a8ff",
+    tab:"gray"
+
   },
   dark: {
     primary: "#485460",
@@ -44,7 +46,9 @@ const globalTheme = {
     border: {
       primary: "#485460",
     },
-    logo:"white"
+    logo:"white",
+    tab:"#d2dae2"
+
   },
 };
 
