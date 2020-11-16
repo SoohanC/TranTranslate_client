@@ -1,7 +1,15 @@
+import { Grid, Hidden, useMediaQuery, useTheme, withStyles } from "@material-ui/core";
 import Earth from "Components/Earth";
 import Noise from "Components/Noise";
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes}  from "styled-components";
+
+const styles = (theme) => ({
+  container: {
+    display: "flex",
+    justifyContent: "center",
+  },
+});
 
 const RerouteAnimation = keyframes`
   0% {
@@ -60,15 +68,16 @@ const Container = styled.div`
 `;
 
 const Jumbotron = styled.div`
-  width: 800px;
+  width:100%;
+  padding:0px 30px;
   margin: 35px auto;
   animation: ${FadeIn} 0.4s ease-in-out;
 `;
 
 const Title = styled.div`
   color: white;
-  font-size: 46px;
-  line-height: 52px;
+  font-size: ${props=>props.matches ? "44px": "28px"};
+  line-height: ${props=>props.matches ? "52px": "38px"};
 `;
 const Transition = styled.div`
   display: ${(props) => (props.reRouting ? "block" : "none")};
@@ -112,7 +121,7 @@ const Status = styled.button`
 
 const Logo = styled.div`
   position: fixed;
-  top: 435px;
+  top: ${props=>props.matches ? "435px" :"50%"};
   width: 100%;
   text-align: center;
   font-family: "Amatic SC", cursive;
@@ -124,7 +133,7 @@ const Logo = styled.div`
 const Logo2 = styled.div`
   display: ${(props) => (props.reRouting ? "block" : "none")};
   position: fixed;
-  top: 435px;
+  top: ${props=>props.matches ? "435px" :"50%"};
   width: 100%;
   text-align: center;
   font-family: "Amatic SC", cursive;
@@ -136,7 +145,7 @@ const Logo2 = styled.div`
 const Message = styled.div`
   display: ${(props) => (props.reRouting ? "block" : "none")};
   position: fixed;
-  top: 530px;
+  top: ${props=>props.matches ? "530px" :"calc(50% + 85px)"};
   width: 100%;
   text-align: center;
   font-size: 20px;
@@ -156,38 +165,48 @@ const Icon = styled.i`
   animation: ${Blink} 1.5s linear infinite;
 `;
 
-const HomePresenter = ({ reRouting, handleReroute, serverStatus }) => {
+const HomePresenter = (props) => {
+  const { classes } = props;
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <>
-      <Container reRouting={reRouting} serverStatus={serverStatus} >
+      <Container reRouting={props.reRouting} serverStatus={props.serverStatus} >
+        <Grid container className={classes.container} >
+        <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
         <Jumbotron>
-          {serverStatus ? <Title>
+          {props.serverStatus ? <Title matches={matches}>
             번역기가 돌려준 번역. <br />
             과연 믿고 써도 되는 걸까?
-          </Title> : <Title>
+          </Title> : <Title matches={matches}>
             죄송합니다. <br />
             현재 점검중입니다.
           </Title>}
-          {!serverStatus ? (
+          {!props.serverStatus ? (
             <Status>
               <Icon className="fas fa-circle" /> 현재 서버 접속 불가
             </Status>
           ) : (
-            <Button onClick={handleReroute}>
-              <Icon className="fas fa-globe-asia" serverStatus={serverStatus} />{" "}
+            <Button onClick={props.handleReroute}>
+              <Icon className="fas fa-globe-asia" serverStatus={props.serverStatus} />{" "}
               TranTranslate 시작하기
             </Button>
           )}
         </Jumbotron>
-        <Earth serverStatus={serverStatus}/>
+        </Grid>
+        </Grid>
+        <Hidden smDown>
+          <Earth serverStatus={props.serverStatus} matches={matches}/>
+        </Hidden>
       </Container>
-      {!serverStatus && <Noise/>}
-      <Logo>TranTranslate</Logo>
-      <Logo2 reRouting={reRouting}>TranTranslate</Logo2>
-      <Message reRouting={reRouting}>환영합니다.</Message>
-      <Transition reRouting={reRouting}></Transition>
+      {!props.serverStatus && <Noise/>}
+      <Logo matches={matches}>TranTranslate</Logo>
+      <Logo2 matches={matches} reRouting={props.reRouting}>TranTranslate</Logo2>
+      <Message matches={matches} reRouting={props.reRouting}>환영합니다.</Message>
+      <Transition reRouting={props.reRouting}></Transition>
     </>
   );
 };
 
-export default HomePresenter;
+export default withStyles(styles)(HomePresenter);

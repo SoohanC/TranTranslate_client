@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
-const Earth = ({ serverStatus }) => {
+const Earth = ({ serverStatus , }) => {
   const mount = useRef(null);
   const [isAnimating, setAnimating] = useState(true);
 
@@ -25,6 +25,7 @@ const Earth = ({ serverStatus }) => {
     scene.add(line);
     camera.position.z = 35;
     renderer.setSize(450, 450);
+    
 
     const renderScene = () => {
       requestAnimationFrame(renderScene);
