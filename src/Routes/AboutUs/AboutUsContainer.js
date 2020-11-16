@@ -1,7 +1,6 @@
 import { Grid, useMediaQuery, useTheme, withStyles } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
-import logo from "../../images/logo_b.png";
 
 const styles = (theme) => ({
   container: {
@@ -33,11 +32,7 @@ const Logo = styled.span`
   color: #00a8ff;
   font-size: ${props=>props.matches ? "80px" : "60px"};
 `;
-const Symbol = styled.img`
-  width: ${props=>props.matches ? "80px" : "60px"};
-  margin-left: 20px;
-  object-fit: contain;
-`;
+
 const Paragraph = styled.p`
   font-size: 15px;
   line-height: 24px;
@@ -61,12 +56,12 @@ const AboutUsContainer = (props) => {
       <Grid container className={classes.container}>
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <Header className="animate__animated animate__fadeInLeft">
-            <Logo matches={matches} >TranTranslate</Logo>
+            <Logo matches={matches} className="logo" >TranTranslate</Logo>
           </Header>
-          <MainTitle className="animate__animated animate__fadeInLeft animate__delay-1s" matches={matches}>
+          <MainTitle className="animate__animated animate__fadeInLeft animate__delay-1s text-primary" matches={matches}>
             서비스 소개
           </MainTitle>
-          <Paragraph className="animate__animated animate__fadeInLeft animate__delay-1s">
+          <Paragraph className="animate__animated animate__fadeInLeft animate__delay-1s text-primary">
             TranTranslate는 파파고 번역, 카카오 번역,Google Translate 와 같은
             번역 프로그램의 정확도를 교차 검증할 수 있게 도와주는 웹
             어플리케이션입니다. 인공신경망 기술의 발달로 인해, 예전에 비해 많은
@@ -75,10 +70,10 @@ const AboutUsContainer = (props) => {
             또는 미세한 뉘앙스 차이로 인해서, 잘못된 의미가 전달되거나 오해를
             불러일으키기도 합니다.
           </Paragraph>
-          <SmallTitle className="animate__animated animate__fadeInLeft animate__delay-2s" matches={matches}>
+          <SmallTitle className="animate__animated animate__fadeInLeft animate__delay-2s text-primary" matches={matches}>
             다중 언어 번역과 재번역
           </SmallTitle>
-          <Paragraph className="animate__animated animate__fadeInLeft animate__delay-2s">
+          <Paragraph className="animate__animated animate__fadeInLeft animate__delay-2s text-primary">
             우리는 일반적으로, 한국어-외국어, 또는 외국어-한국어 번역을
             사용합니다. 그러나 대상 외국어를 잘 모르는 경우엔 한국어가 외국어로
             제대로 번역 되었는지, 또는 외국어가 한국어로 번역이 되었는지 알기
